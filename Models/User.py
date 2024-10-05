@@ -1,9 +1,8 @@
-from flask import Flask
-import sqlalchemy
+import sqlalchemy as db
 
-app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/test.db'
-db = sqlalchemy(app)
+engine = db.create_engine('sqlite:///library.db')
+conn = engine.connect()
+metadata = db.MetaData()
 
 
 class User(db.Model):

@@ -1,8 +1,11 @@
 from flask import Flask
 import sqlalchemy as db
-from Models.User import User
+# from Models.Book import Book
+# from Models.User import User
+from Models.Test import Test
 
 app = Flask(__name__)
+
 
 @app.route('/')
 def hello_world():  # put application's code here
@@ -11,7 +14,7 @@ def hello_world():  # put application's code here
 
 @app.route('/books')
 def books():  # put application's code here
-    print(db)
+    print(Test)
     return 'books World!' #+ db.select(dual)
 
 
