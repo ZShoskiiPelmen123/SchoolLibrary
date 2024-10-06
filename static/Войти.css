@@ -1,0 +1,102 @@
+body{
+    margin: 0 auto;
+    text-align: center;
+}
+
+.Main{
+    text-align: right;
+    padding: 10px;
+}
+
+.Theme{
+    display: flex;
+    flex-direction: column;
+}
+
+.Button{
+    width: 40px;
+    height: 40px;
+}
+
+.Text3{
+    font-family: Arial, sans-serif;
+    color: rgb(190, 190, 190);
+}
+
+.Kvass1{
+    width: 40%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.Mewing{
+    margin: 10px;
+}
+
+.Name{
+    margin: 10px;
+    font-family: Arial, sans-serif;
+}
+
+.Войти{
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(223, 223, 223);
+    border-radius: 10px;
+}
+
+.Text1{
+    margin: 10px;
+    font-family: Arial, sans-serif;
+}
+
+input[type = "text"]{
+    margin: 10px;
+    border: 2px solid rgb(204, 204, 204);
+    border-radius: 4px;
+}
+
+input[type = "password"]{
+    margin: 10px;
+    border: 2px solid rgb(204, 204, 204);
+    border-radius: 4px;
+}
+
+.OtherDisplay{
+    display: flex;
+    flex-direction: row;
+}
+
+.Text2{
+    margin: 10px;
+    font-family: Arial, sans-serif;
+}
+
+input[type = "checkbox"]{
+    margin: 10px;
+}
+
+.Enter{
+    margin: 10px;
+    font-family: Arial, sans-serif;
+    background-color: rgb(211, 211, 211);
+    border-radius: 4px;
+}
+
+.Enter:hover{
+    transition: 0.39s;
+    transform: scale(1.03, 1.03);
+}
+
+.Register{
+    margin: 10px;
+    background-color: rgb(211, 211, 211);
+    font-family: Arial, sans-serif;
+    border-radius: 4px;
+}
+
+.Register:hover{
+    transition: 0.39s;
+    transform: scale(1.03, 1.03);
+}
