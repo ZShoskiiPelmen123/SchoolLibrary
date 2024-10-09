@@ -1,0 +1,11 @@
+{% extends "baseHTML.html" %}
+<body style="background-color: aqua">
+{% block Kvass %}
+    {% for book in bookshelf %}
+        <div>
+            {{ book.info }}
+        </div>
+    {% endfor %}
+{% endblock Kvass %}
+</body>
+</html>

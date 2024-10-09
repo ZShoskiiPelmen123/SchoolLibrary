@@ -1,9 +1,7 @@
 from flask import Flask
 from flask import render_template
-import sqlalchemy as db
-# from Models.Book import Book
 # from Models.User import User
-from Models.Test import Test
+from models import Book
 
 app = Flask(__name__)
 
@@ -15,7 +13,6 @@ def hello_world():  # put application's code here
 
 @app.route('/books')
 def books():  # put application's code here
-    print(Test)
     return 'books World!' #+ db.select(dual)
 
 
@@ -31,12 +28,15 @@ def register():
 
 @app.route('/Kvass1488')
 def confirming1():
-    return render_template('СтраницаФедиЛол.html')
+    print('asdsadad')
+    bookshelf = Book.query.all()
+    return render_template('СтраницаФедиЛол.html', bookshelf=bookshelf)
 
 
 @app.route('/Kvass52')
 def confirming2():
-    return render_template('СтраницаФедиЛол.html')
+    bookshelf = Book.query.all()
+    return render_template('СтраницаФедиЛол.html', bookshelf=bookshelf)
 
 
 if __name__ == '__main__':

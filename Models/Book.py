@@ -1,6 +1,0 @@
-import sqlalchemy as db
-
-engine = db.create_engine('sqlite:///library.db')
-conn = engine.connect()
-metadata = db.MetaData()
-
