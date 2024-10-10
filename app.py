@@ -2,8 +2,12 @@ from flask import Flask
 from flask import render_template
 # from Models.User import User
 from models import Book
+from models import db
 
 app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///library.db'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+db.init_app(app)
 
 
 @app.route('/egg')
@@ -30,13 +34,13 @@ def register():
 def confirming1():
     print('asdsadad')
     bookshelf = Book.query.all()
-    return render_template('СтраницаФедиЛол.html', bookshelf=bookshelf)
+    return render_template('СтраницаФедиЛол.html', bookshelf=bookshelf, num=len(bookshelf))
 
 
 @app.route('/Kvass52')
 def confirming2():
     bookshelf = Book.query.all()
-    return render_template('СтраницаФедиЛол.html', bookshelf=bookshelf)
+    return render_template('СтраницаФедиЛол.html', bookshelf=bookshelf, num=len(bookshelf))
 
 
 if __name__ == '__main__':

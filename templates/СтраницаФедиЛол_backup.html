@@ -1,0 +1,80 @@
+{% extends "baseHTML.html" %}
+<body style="background-color: aqua">
+{% block Kvass %}
+    <div class="main">
+        <div class="invis1">
+            <div class="icon">
+                <img src="static/istockphoto-2041572395-612x612.jpg" class="profile">
+            </div>
+            <div class="subinvis1">
+              <form class="lenin">
+                  <input type="text" placeholder="Поиск" class="POISKTEXT">
+              </form>
+              <button class="Poisk"> 🔎 </button>
+            </div>
+            <button class="menu" data-hamburger="true" aria-label="Меню">
+                <div class="submenu">
+                    <span class="submenu1"></span>
+                    <span class="submenu2"></span>
+                    <span class="submenu2"></span>
+                    <span class="submenu3"></span>
+                </div>
+            </button>
+            <div class="menyu">
+                <div class="submenyu">
+                    <div class="o nas">О нас</div>
+                    <div class="lichni kabinet"> Личный кабинет</div>
+                    Б
+                </div>
+            </div>
+        </div>
+        <div class="invis2">
+            <div class="icon2">
+                <img src="static/кНИГА.jpg" class="book">
+            </div>
+            <div class="stalin">
+                <button class="style">
+                    <div class="kvadrat01"> </div>
+                    <div class="kvadrat01"> </div>
+                    <div class="kvadrat01"> </div>
+                    <div class="kvadrat01"> </div>
+                </button>
+                <button class="style1">
+                    <div class="kvadrat11"> </div>
+                    <div class="kvadrat11"> </div>
+                </button>
+                <button class="style2">
+                    <div class="kvadrat22"> </div>
+                    <div class="kvadrat22"> </div>
+                </button>
+            </div>
+            <button onclick="document.body.style.backgroundColor='rgb(43, 43, 43)';"  class="teme">
+                <img src="static/DayNight.jpg" class="DayNightButton">
+            </button>
+        </div>
+     </div>
+    <div>
+        Количество книг: {{ num }}
+    </div>
+    <div>
+            ㅤ
+    </div>
+    <div>
+        <table border="1" border-color="black">
+        <tr>
+            <td><b>Название книги</b></td>
+            <td><b>Автор книги</b></td>
+            <td><b>Информация о книге</b></td>
+        </tr>
+        {% for book in bookshelf %}
+        <tr>
+            <td>{{ book.title }}</td>
+            <td>{{ book.author }}</td>
+            <td>{{ book.info }}</td>
+        </tr>
+        {% endfor %}
+        </table>
+    </div>
+{% endblock Kvass %}
+</body>
+</html>

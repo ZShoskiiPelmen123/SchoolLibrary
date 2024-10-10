@@ -16,8 +16,8 @@ if __name__ == "__main__":
         usertype3 = UserType(name="Библиотекарь")
         db.session.add_all([usertype1, usertype2, usertype3])
 
-        book1 = Book(title="title", author="author", info="info")
-        book2 = Book(title="another title", author="another author", info="another info")
-        book3 = Book(title="third title", author="third author", info="third info")
+        book1 = Book(title="Я чувствую", author="Тимечко Глеб", info="Ох, как же он чувствует, год издания: В твоих мечтах")
+        book2 = Book(title="История этого проекта", author="Тимечко Глеб", info="Это история про Глеба, который хорошо писал проект, и про Федю который всё это время страдал фигнёй.")
+        book3 = Book(title="Преступление и наказание", author="Фёдор Достоевский", info="Хз чё там, пока не читал, зато вам интересно будет")
         db.session.add_all([book1, book2, book3])
         db.session.commit()

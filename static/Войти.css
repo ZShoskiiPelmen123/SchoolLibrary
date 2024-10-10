@@ -3,11 +3,6 @@ body{
     text-align: center;
 }
 
-.Main{
-    text-align: right;
-    padding: 10px;
-}
-
 .Theme{
     display: flex;
     flex-direction: column;
