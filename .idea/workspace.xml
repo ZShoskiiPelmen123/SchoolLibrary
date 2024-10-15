@@ -4,20 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7a5a9ef6-c060-4861-b582-0643df5f942f" name="Changes" comment="фывфыв">
-      <change afterPath="$PROJECT_DIR$/static/6090503-middle.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/DayNight.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/FedyaStyle.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/istockphoto-2041572395-612x612.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/кНИГА.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/СтраницаФедиЛол_backup.html" afterDir="false" />
+    <list default="true" id="7a5a9ef6-c060-4861-b582-0643df5f942f" name="Changes" comment="Отображение книг и количества + вёрстка">
+      <change afterPath="$PROJECT_DIR$/static/plane1.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Createdb.py" beforeDir="false" afterPath="$PROJECT_DIR$/Createdb.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/instance/library.db" beforeDir="false" afterPath="$PROJECT_DIR$/instance/library.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/Войти.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/Войти.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/baseHTML.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/baseHTML.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/СтраницаФедиЛол.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/СтраницаФедиЛол.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/Войти.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/Войти.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,6 +21,7 @@
         <option value="Flask Main" />
         <option value="Python Script" />
         <option value="HTML File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -61,23 +53,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "DefaultHtmlFileTemplate": "HTML File",
-    "Flask server.Flask (Createdb.py).executor": "Run",
-    "Flask server.KvassInfinity.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "last_opened_file_path": "C:/Users/user/PycharmProjects/KvassInfinity/templates",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;Flask server.Flask (Createdb.py).executor&quot;: &quot;Run&quot;,
+    &quot;Flask server.KvassInfinity.executor&quot;: &quot;Run&quot;,
+    &quot;Python.asdasd.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/user/PycharmProjects/KvassInfinity/templates&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\user\PycharmProjects\KvassInfinity\templates" />
@@ -143,7 +136,9 @@
       <option name="presentableId" value="Default" />
       <updated>1728161880237</updated>
       <workItem from="1728161881745" duration="30156000" />
-      <workItem from="1728585614210" duration="10408000" />
+      <workItem from="1728585614210" duration="17095000" />
+      <workItem from="1728937137910" duration="2009000" />
+      <workItem from="1729020494019" duration="1186000" />
     </task>
     <task id="LOCAL-00001" summary="First commit">
       <option name="closed" value="true" />
@@ -193,7 +188,15 @@
       <option name="project" value="LOCAL" />
       <updated>1728507776716</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Отображение книг и количества + вёрстка">
+      <option name="closed" value="true" />
+      <created>1728597237408</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1728597237408</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -223,21 +226,12 @@
     <MESSAGE value="Добавлена шаблоны страниц регистрация, вход и стили к ним" />
     <MESSAGE value="Добавлены маршруты, переходы" />
     <MESSAGE value="фывфыв" />
-    <option name="LAST_COMMIT_MESSAGE" value="фывфыв" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/app.py</url>
-          <line>36</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="Отображение книг и количества + вёрстка" />
+    <option name="LAST_COMMIT_MESSAGE" value="Отображение книг и количества + вёрстка" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/KvassInfinity$Flask__Createdb_py_.coverage" NAME="Flask (Createdb.py) Coverage Results" MODIFIED="1728505863786" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
-    <SUITE FILE_PATH="coverage/KvassInfinity$KvassInfinity.coverage" NAME="KvassInfinity Coverage Results" MODIFIED="1728596180330" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/KvassInfinity$KvassInfinity.coverage" NAME="KvassInfinity Coverage Results" MODIFIED="1729021481277" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/KvassInfinity$asdasd.coverage" NAME="asdasd Coverage Results" MODIFIED="1728938013704" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
