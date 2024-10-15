@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7a5a9ef6-c060-4861-b582-0643df5f942f" name="Changes" comment="Отображение книг и количества + вёрстка">
-      <change afterPath="$PROJECT_DIR$/static/plane1.js" afterDir="false" />
+    <list default="true" id="7a5a9ef6-c060-4861-b582-0643df5f942f" name="Changes" comment="Смена темы (начало)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/plane1.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/plane1.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/Войти.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/Войти.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/baseHTML.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/baseHTML.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/Войти.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/Войти.html" afterDir="false" />
     </list>
@@ -138,7 +139,7 @@
       <workItem from="1728161881745" duration="30156000" />
       <workItem from="1728585614210" duration="17095000" />
       <workItem from="1728937137910" duration="2009000" />
-      <workItem from="1729020494019" duration="1186000" />
+      <workItem from="1729020494019" duration="5922000" />
     </task>
     <task id="LOCAL-00001" summary="First commit">
       <option name="closed" value="true" />
@@ -196,7 +197,15 @@
       <option name="project" value="LOCAL" />
       <updated>1728597237408</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Смена темы (начало)">
+      <option name="closed" value="true" />
+      <created>1729021892850</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1729021892850</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -227,11 +236,12 @@
     <MESSAGE value="Добавлены маршруты, переходы" />
     <MESSAGE value="фывфыв" />
     <MESSAGE value="Отображение книг и количества + вёрстка" />
-    <option name="LAST_COMMIT_MESSAGE" value="Отображение книг и количества + вёрстка" />
+    <MESSAGE value="Смена темы (начало)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Смена темы (начало)" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/KvassInfinity$Flask__Createdb_py_.coverage" NAME="Flask (Createdb.py) Coverage Results" MODIFIED="1728505863786" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
-    <SUITE FILE_PATH="coverage/KvassInfinity$KvassInfinity.coverage" NAME="KvassInfinity Coverage Results" MODIFIED="1729021481277" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/KvassInfinity$KvassInfinity.coverage" NAME="KvassInfinity Coverage Results" MODIFIED="1729026637916" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/KvassInfinity$asdasd.coverage" NAME="asdasd Coverage Results" MODIFIED="1728938013704" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

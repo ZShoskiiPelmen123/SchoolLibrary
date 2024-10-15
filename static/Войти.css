@@ -3,6 +3,15 @@ body{
     text-align: center;
 }
 
+a{
+    text-decoration: auto;
+    color: black;
+}
+
+button {
+    cursor: pointer;
+}
+
 .Theme{
     display: flex;
     flex-direction: column;
