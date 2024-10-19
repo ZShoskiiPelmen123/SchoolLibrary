@@ -1,26 +1,22 @@
 {% extends "baseHTML.html" %}
 {% block Kvass %}
-    <div class="Main">
-        <div class="Theme"></div>
-            <button class="Button" onclick="plane1()"></button>
-            <div id="FedorTiLoh" class="Text3">Recommended ↑</div>
-        </div>
-        <div class="Kvass1">
-            <div class="Mewing"><img id="mewing" src="static/Безымянный.png"></div>
-            <div class="Name">Название сайта</div>
-            <form class="Войти">
-                <div class="Text1">Войти</div>
-                <input type="text" placeholder="Никнейм">
-                <input type="password" placeholder="Пароль">
-                <div class="OtherDisplay">
-                    <div class="Text2">С чужого устр.</div>
-                    <input type="checkbox">
-                </div>
-                <button class="Enter" onclick="location.href='/Kvass52'">Продолжить</button>
-                <button class="Register" onclick="location.href='/registration'">Регистрация</button>
+    <div class="Kvass1">
+        <div class="Mewing"><img id="mewing" src="static/Безымянный.png"></div>
+        <div class="Name">Название сайта</div>
+        <div class="authForm">
+            <div class="Text1">Войти</div>
+            <input type="text" placeholder="Никнейм">
+            <input type="password" placeholder="Пароль">
+            <div class="OtherDisplay">
+                <div class="Text2">С чужого устр.</div>
+                <input type="checkbox">
+            </div>
+            <form action="/Kvass52">
+                <button class="Enter">Продолжить</button>
+            </form>
+            <form action="/registration">
+                <button class="Register">Регистрация</button>
             </form>
         </div>
     </div>
 {% endblock Kvass %}
-</body>
-</html>

@@ -1,27 +1,21 @@
 {% extends "baseHTML.html" %}
 {% block Kvass %}
-    <div class="Main">
-        <div class="Theme"></div>
-            <button class="Button"></button>
-        </div>
-        <div class="Kvass1">
-            <div class="Mewing"><img src="static/Безымянный.png"></div>
-            <form class="Войти">
-                <div class="Text1">Регистрация</div>
-                <select>
-                    <option value="Класс">Классный руководитель</option>
-                    <option value="РабСистемы">Ученик</option>
-                    <option value="Гигачад">Библиотекарь</option>
-                    <option value="Лох">лох</option>
-                </select>
-                <input type="text" placeholder="Никнейм">
-                <input type="text" placeholder="Класс">
-                <input type="text" placeholder="Имя">
-                <input type="text" placeholder="Фамилия">
-                <input type="password" placeholder="Пароль">
-                <button type="submit" class="Register"><a href="/Kvass1488">Зарегистрироваться</a></button>
-            </form>
-        </div>
+    <div class="Kvass1">
+        <div class="Mewing"><img id="mewing" src="static/Безымянный.png"></div>
+        <form class="authForm" action="/Kvass1488">
+            <div class="Text1">Регистрация</div>
+            <select>
+                <option value="Класс">Классный руководитель</option>
+                <option value="РабСистемы">Ученик</option>
+                <option value="Гигачад">Библиотекарь</option>
+            </select>
+            <input type="text" required name="nickname" placeholder="Никнейм">
+            <input type="text" required name="grade" placeholder="Класс">
+            <input type="text" required name="name" placeholder="Имя">
+            <input type="text" required name="last_name" placeholder="Фамилия">
+            <input type="password" required name="password" placeholder="Пароль">
+            <button type="submit" class="Register">Зарегистрироваться</button>
+        </form>
     </div>
 {% endblock Kvass %}
 </body>
