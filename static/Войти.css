@@ -83,6 +83,10 @@ input[type = "checkbox"]{
     margin: 10px;
 }
 
+.Enter, .Register {
+    width: 95%;
+}
+
 .Enter{
     margin: 10px;
     font-family: Arial, sans-serif;
