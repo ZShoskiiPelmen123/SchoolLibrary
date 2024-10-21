@@ -1,8 +1,10 @@
 from flask import Flask
 from flask import render_template
-# from Models.User import User
 from models import Book
 from models import db
+from flask import request
+from models import User
+from werkzeug.security import generate_password_hash, check_password_hash
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///library.db'
@@ -15,11 +17,6 @@ def hello_world():  # put application's code here
     return 'Hello World!'
 
 
-@app.route('/books')
-def books():  # put application's code here
-    return 'books World!' #+ db.select(dual)
-
-
 @app.route('/')
 def login():
     return render_template('Войти.html')
@@ -30,11 +27,19 @@ def register():
     return render_template('Регистрация.html')
 
 
-@app.route('/Kvass1488')
+@app.route('/Kvass1488', methods=['POST'])
 def confirming1():
-    print('asdsadad')
-    bookshelf = Book.query.all()
-    return render_template('СтраницаФедиЛол.html', bookshelf=bookshelf, num=len(bookshelf))
+    if User.query.filter_by(nickname=request.form['nickname']).first() is None:
+        print('user is not defined')
+        hashed_password = generate_password_hash(request.form['password'])
+        user = User(nickname=request.form['nickname'], name=request.form['name'], last_name=request.form['last_name'],
+                    grade=request.form['grade'], password=hashed_password)
+        db.session.add(user)
+        db.session.commit()
+        return('СтраницаФедиЛол.html')
+    else:
+        print('user already exists')
+        return "Пасхалко 1488"
 
 
 @app.route('/Kvass52')
