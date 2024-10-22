@@ -1,14 +1,16 @@
 {% extends "baseHTML.html" %}
 {% block Kvass %}
     <div class="Kvass1">
-        <div class="Mewing"><img id="mewing" src="static/Безымянный.png"></div>
+        <div class="Mewing"><img id="mewing" src="static/Безымянный.png" alt=""></div>
         <form method="post" class="authForm" action="/Kvass1488">
             <div class="Text1">Регистрация</div>
-            <select>
-                <option value="РабСистемы">Ученик</option>
-                <option value="Класс">Классный руководитель</option>
-                <option value="Гигачад">Библиотекарь</option>
-            </select>
+            <label>
+                <select>
+                    <option name="victim" value="РабСистемы">Ученик</option>
+                    <option name="starman" value="Класс">Классный руководитель</option>
+                    <option name="warden" value="Гигачад">Библиотекарь</option>
+                </select>
+            </label>
             <input type="text" required name="nickname" placeholder="Никнейм">
             <input type="text" required name="grade" placeholder="Класс">
             <input type="text" required name="name" placeholder="Имя">
