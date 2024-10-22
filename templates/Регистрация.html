@@ -4,10 +4,10 @@
         <div class="Mewing"><img id="mewing" src="static/Безымянный.png"></div>
         <form method="post" class="authForm" action="/Kvass1488">
             <div class="Text1">Регистрация</div>
-            <select>
-                <option value="РабСистемы">Ученик</option>
-                <option value="Класс">Классный руководитель</option>
-                <option value="Гигачад">Библиотекарь</option>
+            <select name="userType">
+                <option value="Ученик">Ученик</option>
+                <option value="Библиотекарь">Классный руководитель</option>
+                <option value="Классный руководитель">Библиотекарь</option>
             </select>
             <input type="text" required name="nickname" placeholder="Никнейм">
             <input type="text" required name="grade" placeholder="Класс">

@@ -1,9 +1,5 @@
-from flask import Flask
-from flask import render_template
-from models import Book
-from models import db
-from flask import request
-from models import User
+from flask import Flask, render_template, request, session
+from models import db, Book, User, UserType
 from werkzeug.security import generate_password_hash, check_password_hash
 
 app = Flask(__name__)
@@ -31,21 +27,29 @@ def register():
 def confirming1():
     if User.query.filter_by(nickname=request.form['nickname']).first() is None:
         print('user is not defined')
+        usertype = UserType.query.filter_by(name=request.form['userType']).first()
         hashed_password = generate_password_hash(request.form['password'])
         user = User(nickname=request.form['nickname'], name=request.form['name'], last_name=request.form['last_name'],
-                    grade=request.form['grade'], password=hashed_password)
+                    grade=request.form['grade'], password=hashed_password, usertype_id=usertype.id)
         db.session.add(user)
         db.session.commit()
-        return('СтраницаФедиЛол.html')
+        return render_template('СтраницаФедиЛол.html')
     else:
-        print('user already exists')
-        return "Пасхалко 1488"
+        return "user already exists"
 
 
-@app.route('/Kvass52')
+@app.route('/Kvass52', methods=['POST'])
 def confirming2():
-    bookshelf = Book.query.all()
-    return render_template('СтраницаФедиЛол.html', bookshelf=bookshelf, num=len(bookshelf))
+    user = User.query.filter_by(nickname=request.form['nickname']).first()
+    if user is not None:
+        hash = generate_password_hash(request.form['password'])
+        if check_password_hash(user.password, request.form['password']):
+            bookshelf = Book.query.all()
+            return render_template('СтраницаФедиЛол.html', bookshelf=bookshelf, num=len(bookshelf))
+        else:
+            return 'Имя пользователя или пароль указаны неверно'
+    else:
+        return 'Имя пользователя или пароль указаны неверно'
 
 
 if __name__ == '__main__':
