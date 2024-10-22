@@ -33,7 +33,8 @@ def confirming1():
                     grade=request.form['grade'], password=hashed_password, usertype_id=usertype.id)
         db.session.add(user)
         db.session.commit()
-        return render_template('СтраницаФедиЛол.html')
+        bookshelf = Book.query.all()
+        return render_template('СтраницаФедиЛол.html', bookshelf=bookshelf, num=len(bookshelf))
     else:
         return "user already exists"
 

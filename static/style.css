@@ -1,0 +1,255 @@
+.main {
+    width: 1600px;
+    height: 700px;
+    margin: auto;
+    background-color: rgba(236, 236, 236, 0);
+    border-width: 3px;
+    border-radius: 45px;
+    border-color: rgb(0, 0, 0);
+    border-style: solid;
+    display: flex;
+    flex-direction: row;
+}
+
+.palka1488 {
+    width: 2px;
+    height: 700px;
+    background-color: black;
+}
+.submain0 {
+    width: 500px;
+    height: 700px;
+    background-color: rgba(78, 48, 8, 0);
+}
+
+.space {
+    width: 500px;
+    height: 50px;
+    background-color: rgba(240, 248, 255, 0);
+}
+.gitler1488 {
+    width: 350px;
+    height: 150px;
+    background-color: rgba(240, 248, 255, 0);
+}
+
+.lichni_kab {
+    width: 400px;
+    height: 100px;
+    margin-left: 50px;
+    border-width: 2px;
+    border-radius: 5px;
+    border-style: solid;
+    border-color: white;
+    font-size: 40px;
+    font-weight: 600;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.inform {
+    width: 300px;
+    height: 35px;
+    margin-top: 5px;
+    margin-left: 100px;
+    border-width: 1px;
+    border-radius: 5px;
+    border-color: black;
+    border-style: solid;
+    font-family: Arial, Helvetica, sans-serif;
+    color: rgb(51, 51, 51);
+    font-size: 15px;
+    align-items: center;
+    text-indent: 10px;
+}
+
+.gitler52 {
+    width: 500px;
+    height: 250px;
+    margin-top: 200px;
+}
+
+.menu {
+    width: 350px;
+    margin-left: 75px;
+    height: 324px;
+    border-width: 1px;
+    border-color: black;
+    border-style: solid;
+}
+
+.lichni_dannie {
+    width: 348px;
+    height: 50px;
+    border-width: 2px;
+    border-color: black;
+    border-style: solid;
+    text-indent: 5px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 30px;
+    background-color: rgb(143, 154, 163);
+}
+
+.my_books {
+    width: 348px;
+    height: 50px;
+    border-width: 2px;
+    border-color: black;
+    border-style: solid;
+    text-indent: 5px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 30px;
+}
+
+.Novosti {
+    width: 348px;
+    height: 50px;
+    border-width: 2px;
+    border-color: black;
+    border-style: solid;
+    text-indent: 5px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 30px;
+}
+
+.o_nas {
+    width: 348px;
+    height: 50px;
+    border-width: 2px;
+    border-color: black;
+    border-style: solid;
+    text-indent: 5px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 30px;
+}
+
+.options {
+    width: 348px;
+    height: 50px;
+    border-width: 2px;
+    border-color: black;
+    border-style: solid;
+    text-indent: 5px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 30px;
+}
+
+.exitakk {
+    width: 348px;
+    height: 50px;
+    border-width: 2px;
+    border-color: black;
+    border-style: solid;
+    text-indent: 5px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 30px;
+}
+
+.main1 {
+    width: 1200px;
+    height: 700px;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.putin {
+    width: 1200px;
+    height: 700px;
+    background-color: rgba(240, 248, 255, 0);
+    display: flex;
+    flex-direction: row;
+}
+.submain10 {
+    width: 400px;
+    background-color: rgba(250, 235, 215, 0);
+    height: 300px;
+    margin: 30px;
+}
+
+.avatarkabutton {
+    width: 200px;
+    height: 200px;
+    border-color: black;
+    border-width: 2px;
+}
+
+.avatarka {
+    width: 200px;
+    height: 200px;
+}
+
+.avatext1 {
+    width: 200px;
+    height: px;
+    text-indent: 40px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 13px;
+    color: rgb(77, 77, 77);
+}
+
+.avatext2 {
+    width: 200px;
+    height: 20px;
+    text-indent: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 13px;
+    color: rgb(77, 77, 77);
+}
+
+.avatext3 {
+    width: 200px;
+    height: 20px;
+    text-indent: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 13px;
+    color: rgb(77, 77, 77);
+}
+
+.savefoto {
+    width: 250px;
+    height: 40px;
+    border-radius: 30px;
+    border-width: 3px;
+    border-style: inset;
+    border-color: rgb(0, 117, 68);
+    background-color: rgb(21, 241, 149);
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+    font-weight: 600;
+    font-family: Arial, Helvetica, sans-serif;
+    text-indent: 30px;
+    margin-top: 30px;
+}
+
+.maindannie {
+    width: 800px;
+    height: 300px;
+}
+.main2 {
+    display: none;
+}
+
+.main3 {
+    display: none;
+}
+
+.main4 {
+    display: none;
+}
+
+.main5 {
+    display: none;
+}
+
+.main6 {
+    display: none;
+}
+
+.test {
+    height: 100px;
+    width: 800px;
+    margin: 50px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 600;
+    font-size: 40px;
+    background-color: rgba(0, 255, 255, 0);
+}
