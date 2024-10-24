@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, jsonify
 from models import db, Book, User, UserType, UserGrade
 from werkzeug.security import generate_password_hash, check_password_hash
 
@@ -6,6 +6,20 @@ app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///library.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db.init_app(app)
+
+theme = 'white'
+
+
+@app.route('/getTheme', methods=['GET'])
+def getTheme():
+    return {'newTheme': theme}
+
+
+@app.route('/setTheme', methods=['POST'])
+def setTheme():
+    global theme
+    theme = request.json['newTheme']
+    return jsonify(success=True)
 
 
 @app.route('/egg')

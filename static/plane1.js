@@ -1,4 +1,4 @@
-function plane1(){
+function plane1(newTheme) {
     let f = document.body;
     let MI = document.getElementById("mewing");
     let E = document.getElementsByClassName("authForm");
@@ -9,7 +9,8 @@ function plane1(){
     let inputList = $('input');
     let themeBtn = document.getElementsByTagName("button")[0];
 
-    if (f.style.backgroundColor === 'rgb(127, 127, 127)') { // светлая тема
+    if (newTheme === 'white') { // светлая тема
+        $('body').attr('data-theme', 'white');
         f.style.backgroundColor = "white";
         f.style.color = "black";
         MI.src = "static/Безымянный.png";
@@ -22,7 +23,8 @@ function plane1(){
         }
         if ($('select').length > 0)
             $('select').css('backgroundColor', 'white');
-    } else { // тёмная тема
+    } else if (newTheme === 'black') { // тёмная тема
+        $('body').attr('data-theme', 'black');
         f.style.backgroundColor = "rgb(127, 127, 127)"
         f.style.color = "lightgray";
         MI.src = "static/Тёмный безымянный.png"
@@ -35,5 +37,33 @@ function plane1(){
         }
         if ($('select').length > 0)
             $('select').css('backgroundColor', 'darkgray');
-}   }
+    }
+}
 
+function getTheme() {
+    console.log('setThemeFunction in JS')
+    $.ajax({
+        url: '/getTheme',
+        method: 'get',
+        success: function (res) {
+            plane1(res.newTheme);
+            return res.newTheme;
+        }
+    });
+}
+
+function setTheme() {
+    let newTheme = $('body').attr('data-theme') === 'black' ? 'white' : 'black';
+    $.ajax({
+        url: '/setTheme',
+        data: JSON.stringify({'newTheme': newTheme}),
+        dataType: 'json',
+        contentType: 'application/json;charset=UTF-8',
+        method: 'post',
+        success: function (res) {
+            plane1(newTheme)
+        }
+    })
+}
+
+getTheme();
