@@ -1,5 +1,5 @@
-from flask import Flask, render_template, request, session
-from models import db, Book, User, UserType
+from flask import Flask, render_template, request
+from models import db, Book, User, UserType, UserGrade
 from werkzeug.security import generate_password_hash, check_password_hash
 
 app = Flask(__name__)
@@ -10,6 +10,8 @@ db.init_app(app)
 
 @app.route('/egg')
 def hello_world():  # put application's code here
+    bookList = getBooksByStudent(getStudentsByTeacher('uuuuuuu')[0].nickname)
+    print(*[a.title for a in bookList])
     return 'Hello World!'
 
 
@@ -18,25 +20,66 @@ def login():
     return render_template('Войти.html')
 
 
+@app.route('/profile')
+def profile():
+    return render_template('index.html')
+
+
+@app.route('/getKlass', methods=['GET'])
+def getKlass():
+    studList = getStudentsByTeacher('dinosaur_hunter')
+    result = []
+    for i in studList:
+        temp = getBooksByStudent(i.nickname)
+        books = []
+        for j in temp:
+            books.append({"author": j.author, "title": j.title})
+        # books["books_count"] = str(len(temp))
+        result.append({'name': i.name, 'last_name': i.last_name, 'books': books, "books_count": len(temp)})
+    return result
+
+
 @app.route('/registration')
 def register():
-    return render_template('Регистрация.html')
+    KvassInfinity = UserGrade.query.all()
+    KvassMnogo = UserType.query.all()
+    return render_template('Регистрация.html', KvassMnogo=KvassMnogo, KvassInfinity=KvassInfinity)
 
 
-@app.route('/Kvass1488', methods=['POST'])
+@app.route('/Kvass1488', methods=['GET', 'POST'])
 def confirming1():
-    if User.query.filter_by(nickname=request.form['nickname']).first() is None:
-        print('user is not defined')
-        usertype = UserType.query.filter_by(name=request.form['userType']).first()
-        hashed_password = generate_password_hash(request.form['password'])
-        user = User(nickname=request.form['nickname'], name=request.form['name'], last_name=request.form['last_name'],
-                    grade=request.form['grade'], password=hashed_password, usertype_id=usertype.id)
-        db.session.add(user)
-        db.session.commit()
-        bookshelf = Book.query.all()
-        return render_template('СтраницаФедиЛол.html', bookshelf=bookshelf, num=len(bookshelf))
+    if request.method == 'POST':
+        if User.query.filter_by(nickname=request.form['nickname']).first() is None:
+            usertype = UserType.query.filter_by(name=request.form['userType']).first()
+            usergrade = UserGrade.query.filter_by(name=request.form['userGrade']).first()
+            hashed_password = generate_password_hash(request.form['password'])
+            user = User(nickname=request.form['nickname'], name=request.form['name'],
+                        last_name=request.form['last_name'], password=hashed_password, usertype_id=usertype.id,
+                        usergrade_id=usergrade.id)
+            db.session.add(user)
+            db.session.commit()
+            bookshelf = Book.query.all()
+            return render_template('СтраницаФедиЛол.html', bookshelf=bookshelf, num=len(bookshelf))
+        else:
+            return "user already exists"
+    if request.method == 'GET':
+        return "кто ты?"
+
+
+def getStudentsByTeacher(teacher):
+    teacher = User.query.filter_by(nickname=teacher, usertype_id=2).first()
+    if teacher is None:
+        return {}
     else:
-        return "user already exists"
+        return User.query.filter_by(usergrade_id=teacher.usergrade_id, usertype_id=1)
+
+
+def getBooksByStudent(stud_nickname):
+    stud_nickname = User.query.filter_by(nickname=stud_nickname, usertype_id=1).first()
+    if stud_nickname is None:
+        return {}
+    else:
+        return Book.query.filter_by(userid=stud_nickname.id).all()
 
 
 @app.route('/Kvass52', methods=['POST'])
