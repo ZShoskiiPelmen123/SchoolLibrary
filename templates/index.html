@@ -1,0 +1,102 @@
+{% extends "baseHTML.html" %}
+{% block style %}
+    <link href="static/style.css" rel="stylesheet" type="text/css"/>
+    <script type="text/javascript" src="static/jquery-3.7.1.min.js" defer></script>
+    <script type="text/javascript" src="static/script.js" defer></script>
+{% endblock %}
+{% block Kvass %}
+    {% block header %}
+    {% endblock %}
+    <div id="main0">
+        <div class="submain0">
+            <div class="gitler1488">
+                <div class="space"></div>
+                <div class="lichni_kab">ЛИЧНЫЙ КАБИНЕТ</div>
+                <div class="inform">Дата регистрации</div>
+                <div class="inform">Взято книг из библиотеки</div>
+                <div class="inform">Забронировано книг</div>
+            </div>
+            <div class="gitler52">
+                <div class="menu">
+                    <div class="Klass" id="z" onclick="getKlass('uuuuuuu')">Класс</div>
+                    <div class="lichni_dannie" id="a">Личные данные</div>
+                    <div class="my_books" id="b">Мои книги</div>
+                    <div class="Novosti" id="c">Новости</div>
+                    <div class="o_nas" id="d">О нас</div>
+                    <div class="options" id="e">Настройки</div>
+                    <div class="exitakk" id="f">Выйти</div>
+                </div>
+            </div>
+        </div>
+        <div class="palka1488"></div>
+        <div class="main" id="main1">
+            <div class="putin">
+                <div class="submain10">
+                    <div class="avatarkabutton">
+                        <img class="avatarka" src="istockphoto-2041572395-612x612.jpg">
+                        <div class="avatext1"> Ваша фотография</div>
+                        <div class="avatext2"> Размер загружаемого файла</div>
+                        <div class="avatext3"> не должен превышать 5 Мб</div>
+                        <div class="savefoto"> Изменить профиль</div>
+                    </div>
+                </div>
+                <div class="maindannie">
+                    <div class="row1"> Фамилия
+                        <div class="Familia"></div>
+                    </div>
+                    <div class="row1"> Имя
+                        <div class="name"></div>
+                    </div>
+                    <div class="row1"> Отчество
+                        <div class="otchestvo"></div>
+                    </div>
+                    <div class="row1"> Класс
+                        <div class="classnomber"></div>
+                        <div class="classbykva"></div>
+                    </div>
+                    <div class="row1">СНИЛС
+                        <div class="SNILS"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="main" id="main2">
+            <div class="test">У вас нет взятых книг</div>
+        </div>
+        <div class="main" id="main3">
+            <div class="test">Новости: вчера какого-то ученика из нано школы збил динозаврБ убегающий от зама директора
+            </div>
+        </div>
+        <div class="main" id="main4">
+            <div class="test">ТимченкоГлеб</div>
+            <div class="test">Мальцев Федро</div>
+        </div>
+        <div class="main" id="main5">
+            <div class="test">Тема</div>
+        </div>
+        <div class="main" id="main6"></div>
+        <div class="main" id="main7">
+            <table id="outerTable" border="1" border-color="black">
+                <caption>Ученики</caption>
+                <thead>
+                <tr>
+                    <td><b>Имя</b></td>
+                    <td><b>Фамилия</b></td>
+                    <td><b>Книг взято</b></td>
+                    <td>
+                        <table class="innerTable" border="1" border-color="black">
+                            <thead>
+                            <tr>
+                                <td><b>Автор</b></td>
+                                <td><b>Название</b></td>
+                            </tr>
+                            </thead>
+                        </table>
+                    </td>
+                </tr>
+                </thead>
+                <tbody id="tbodyStud"></tbody>
+            </table>
+        </div>
+    </div>
+{% endblock Kvass %}

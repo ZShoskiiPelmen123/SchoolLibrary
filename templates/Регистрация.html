@@ -5,12 +5,16 @@
         <form method="post" class="authForm" action="/Kvass1488">
             <div class="Text1">Регистрация</div>
             <select name="userType">
-                <option value="Ученик">Ученик</option>
-                <option value="Библиотекарь">Классный руководитель</option>
-                <option value="Классный руководитель">Библиотекарь</option>
+                    {% for book in KvassMnogo %}
+                        <option value={{ book.name }}>{{ book.name }}</option>
+                    {% endfor %}
             </select>
             <input type="text" required name="nickname" placeholder="Никнейм">
-            <input type="text" required name="grade" placeholder="Класс">
+            <select name="userGrade">
+                    {% for book in KvassInfinity %}
+                        <option value={{ book.name }}>{{ book.name }}</option>
+                    {% endfor %}
+            </select>
             <input type="text" required name="name" placeholder="Имя">
             <input type="text" required name="last_name" placeholder="Фамилия">
             <input type="password" required name="password" placeholder="Пароль">
@@ -18,5 +22,3 @@
         </form>
     </div>
 {% endblock Kvass %}
-</body>
-</html>
