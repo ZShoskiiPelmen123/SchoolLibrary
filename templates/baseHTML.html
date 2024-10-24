@@ -7,15 +7,15 @@
     {% block style %}
     <link href="static/Войти.css" rel="stylesheet" type="text/css" />
     <link href="static/Регистрация.css" rel="stylesheet" type="text/css" />
-    <script type="text/javascript" src="static/jquery-3.7.1.min.js" defer></script>
+    <script type="text/javascript" src="static/jquery-3.7.1.min.js"></script>
     <script src="static/plane1.js" type="text/javascript"></script>
     {% endblock %}
 </head>
-<body>
+<body data-theme="black">
     {% block header %}
         <div class="Main">
         <div class="Theme"></div>
-            <button class="Button" onclick="plane1()"></button>
+            <button class="Button" onclick="setTheme()"></button>
             <div id="FedorTiLoh" class="Text3">Recommended ↑</div>
         </div>
     {% endblock %}
