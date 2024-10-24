@@ -1,87 +1,15 @@
-document.getElementById("a").addEventListener("click", () => {
-    $('.main').hide()
-    $('#main1').show()
-    console.log($(this)[0])
-    document.getElementById("a").style.backgroundColor = "rgb(143, 154, 163)";
-    document.getElementById("b").style.backgroundColor = "white";
-    document.getElementById("c").style.backgroundColor = "white";
-    document.getElementById("d").style.backgroundColor = "white";
-    document.getElementById("e").style.backgroundColor = "white";
-    document.getElementById("f").style.backgroundColor = "white";
-    document.getElementById("z").style.backgroundColor = "white";
-});
-
-document.getElementById("b").addEventListener("click", () => {
-    $('.main').hide()
-    $('#main2').show()
-    document.getElementById("a").style.backgroundColor = "white";
-    document.getElementById("b").style.backgroundColor = "rgb(143, 154, 163)";
-    document.getElementById("c").style.backgroundColor = "white";
-    document.getElementById("d").style.backgroundColor = "white";
-    document.getElementById("e").style.backgroundColor = "white";
-    document.getElementById("f").style.backgroundColor = "white";
-    document.getElementById("z").style.backgroundColor = "white";
-});
-
-document.getElementById("c").addEventListener("click", () => {
-    $('.main').hide()
-    $('#main3').show()
-    document.getElementById("a").style.backgroundColor = "white";
-    document.getElementById("b").style.backgroundColor = "white";
-    document.getElementById("c").style.backgroundColor = "rgb(143, 154, 163)";
-    document.getElementById("d").style.backgroundColor = "white";
-    document.getElementById("e").style.backgroundColor = "white";
-    document.getElementById("f").style.backgroundColor = "white";
-    document.getElementById("z").style.backgroundColor = "white";
-});
-
-document.getElementById("d").addEventListener("click", () => {
-    $('.main').hide()
-    $('#main4').show()
-    document.getElementById("a").style.backgroundColor = "white";
-    document.getElementById("b").style.backgroundColor = "white";
-    document.getElementById("c").style.backgroundColor = "white";
-    document.getElementById("d").style.backgroundColor = "rgb(143, 154, 163)";
-    document.getElementById("e").style.backgroundColor = "white";
-    document.getElementById("f").style.backgroundColor = "white";
-    document.getElementById("z").style.backgroundColor = "white";
-});
-
-document.getElementById("e").addEventListener("click", () => {
-    $('.main').hide()
-    $('#main5').show()
-    document.getElementById("a").style.backgroundColor = "white";
-    document.getElementById("b").style.backgroundColor = "white";
-    document.getElementById("c").style.backgroundColor = "white";
-    document.getElementById("d").style.backgroundColor = "white";
-    document.getElementById("e").style.backgroundColor = "rgb(143, 154, 163)";
-    document.getElementById("f").style.backgroundColor = "white";
-    document.getElementById("z").style.backgroundColor = "white";
-});
-
-document.getElementById("f").addEventListener("click", () => {
-    $('.main').hide()
-    $('#main6').show()
-    document.getElementById("a").style.backgroundColor = "white";
-    document.getElementById("b").style.backgroundColor = "white";
-    document.getElementById("c").style.backgroundColor = "white";
-    document.getElementById("d").style.backgroundColor = "white";
-    document.getElementById("e").style.backgroundColor = "white";
-    document.getElementById("f").style.backgroundColor = "rgb(143, 154, 163)";
-    document.getElementById("z").style.backgroundColor = "white";
-});
-
-document.getElementById("z").addEventListener("click", () => {
-    $('.main').hide()
-    $('#main7').show()
-    document.getElementById("a").style.backgroundColor = "white";
-    document.getElementById("b").style.backgroundColor = "white";
-    document.getElementById("c").style.backgroundColor = "white";
-    document.getElementById("d").style.backgroundColor = "white";
-    document.getElementById("e").style.backgroundColor = "white";
-    document.getElementById("f").style.backgroundColor = "white";
-    document.getElementById("z").style.backgroundColor = "rgb(143, 154, 163)";
-});
+let initEvents = function() {
+    menuitem_list = document.getElementsByClassName('menuitem');
+    for (const el of menuitem_list) {
+        el.addEventListener("click", (e) => {
+           for (const el of document.getElementsByClassName('main'))
+               el.style.display = el.dataset.id === e.target.dataset.id ? "flex" : "none";
+            for (const el of document.getElementsByClassName('menuitem'))
+                el.style.backgroundColor = "white"
+            e.target.style.backgroundColor = "rgb(143, 154, 163)";
+        });
+    }
+}
 
 function getKlass(tn) {
     $.ajax({
@@ -97,7 +25,6 @@ function getKlass(tn) {
                     $('#tbodyStud td:last').append("<table class='innerTable' border-color='black' border='1'>" +
                         "<tbody></tbody></table>")
                     for (let j = 0; j < res[i].books.length; j++) {
-                        console.log(res[i].books[j]);
                         $('.innerTable:last tbody').append("<tr><td>" + res[i].books[j].author + "</td><td>" +
                             res[i].books[j].title + "</td></tr>")
                     }
@@ -106,3 +33,5 @@ function getKlass(tn) {
         }
     });
 }
+
+initEvents();
