@@ -8,6 +8,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db.init_app(app)
 
 theme = 'white'
+authType = 0
 
 
 @app.route('/getTheme', methods=['GET'])
@@ -36,7 +37,10 @@ def login():
 
 @app.route('/profile')
 def profile():
-    return render_template('index.html')
+    if authType == authType:
+        return render_template('index.html')
+    else:
+        return 'dinax ti ne uchitel'
 
 
 @app.route('/getKlass', methods=['GET'])
@@ -62,6 +66,7 @@ def register():
 
 @app.route('/Kvass1488', methods=['GET', 'POST'])
 def confirming1():
+    global authType
     if request.method == 'POST':
         if User.query.filter_by(nickname=request.form['nickname']).first() is None:
             usertype = UserType.query.filter_by(name=request.form['userType']).first()
@@ -73,6 +78,7 @@ def confirming1():
             db.session.add(user)
             db.session.commit()
             bookshelf = Book.query.all()
+            authType = user.usertype_id
             return render_template('СтраницаФедиЛол.html', bookshelf=bookshelf, num=len(bookshelf))
         else:
             return "user already exists"
@@ -98,11 +104,13 @@ def getBooksByStudent(stud_nickname):
 
 @app.route('/Kvass52', methods=['POST'])
 def confirming2():
+    global authType
     user = User.query.filter_by(nickname=request.form['nickname']).first()
     if user is not None:
         hash = generate_password_hash(request.form['password'])
         if check_password_hash(user.password, request.form['password']):
             bookshelf = Book.query.all()
+            authType = user.usertype_id
             return render_template('СтраницаФедиЛол.html', bookshelf=bookshelf, num=len(bookshelf))
         else:
             return 'Имя пользователя или пароль указаны неверно'
