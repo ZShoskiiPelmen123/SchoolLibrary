@@ -1,6 +1,7 @@
 body{
     margin: 0 auto;
     text-align: center;
+    background-size: cover;
 }
 
 a{
@@ -24,47 +25,71 @@ button {
 
 .Text3{
     font-family: Arial, sans-serif;
-    color: rgb(190, 190, 190);
+    background-color: rgba(0,0,0,0);
 }
 
 .Kvass1{
-    width: 40%;
+    width: 38%;
+    height: 600px;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
+    border-radius: 15px;
+    background-size: cover;
+    background-image: url("DayBackround.jpg");
 }
 
 .Mewing{
     margin: 10px;
+    background-size: cover;
 }
+
+
 
 .Name{
     margin: 10px;
     font-family: Arial, sans-serif;
+    font-weight: 600;
+    font-family: "Arial Narrow";
+    color: #0c2239;
+    font-size: 25px;
+    height: 70px;
 }
 
 .Войти{
     display: flex;
     flex-direction: column;
-    background-color: rgb(223, 223, 223);
+    background-color: rgba(0,0,0,0);
     border-radius: 10px;
 }
 
+.authForm{
+    display: flex;
+    background-color: rgba(0,0,0,0);
+}
 .Text1{
     margin: 10px;
     font-family: Arial, sans-serif;
+    background-color: rgba(0,0,0,0);
 }
 
 input[type = "text"]{
-    margin: 10px;
+    margin-top: 10px;
+    margin-left: 50px;
+    margin-right: 50px;
     border: 2px solid rgb(204, 204, 204);
     border-radius: 4px;
+    background-color: rgba(58,215,131,0.51);
+
 }
 
 input[type = "password"]{
-    margin: 10px;
+    margin-top: 10px;
+    margin-left: 50px;
+    margin-right: 50px;
     border: 2px solid rgb(204, 204, 204);
     border-radius: 4px;
+    background-color: rgba(58,215,131,0.51);
 }
 
 .OtherDisplay{
@@ -72,27 +97,43 @@ input[type = "password"]{
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
+    background-color: rgba(0,0,0,0);
 }
 
 .Text2{
     margin: 10px;
     font-family: Arial, sans-serif;
+    background-color: rgba(0,0,0,0);
+    color: white;
 }
 
 input[type = "checkbox"]{
     margin: 10px;
 }
 
+.vvod {
+    background-color: rgba(37,92,202,0.5);
+    border-width: 4px;
+    border-color: rgba(7,59,126,0.8);
+}
 .Enter, .Register {
     width: 95%;
 }
 
+.backimg{
+    filter: blur(5px);
+}
 .Enter{
     margin: 10px;
     font-family: Arial, sans-serif;
-    background-color: rgb(211, 211, 211);
+    background-color: rgba(100,171,233,0.5);
     border-radius: 4px;
-    width: 90%;
+    width: 80%;
+    height: 40px;
+    border-color: rgba(13,144,144,0.9);
+    color: #0c2239;
+    font-size: 30px;
+    font-weight: 600;
 }
 
 .Enter:hover{
@@ -102,10 +143,10 @@ input[type = "checkbox"]{
 
 .Register{
     margin: 10px;
-    background-color: rgb(211, 211, 211);
     font-family: Arial, sans-serif;
+    background-color: rgba(19,93,108,0.31);
     border-radius: 4px;
-    width: 90%;
+    width: 80%;
 }
 
 .Register:hover{
