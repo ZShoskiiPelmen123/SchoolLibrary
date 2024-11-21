@@ -1,6 +1,7 @@
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, jsonify, redirect
 from models import db, Book, User, UserType, UserGrade
 from werkzeug.security import generate_password_hash, check_password_hash
+from functools import wraps
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///library.db'
@@ -11,13 +12,22 @@ theme = 'white'
 authType = 0
 
 
+def check_auth(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        if authType == 0:
+            return redirect('/')
+        return f(*args, **kwargs)
+    return decorated_function
+
+
 @app.route('/getTheme', methods=['GET'])
-def getTheme():
+def get_theme():
     return {'newTheme': theme}
 
 
 @app.route('/setTheme', methods=['POST'])
-def setTheme():
+def set_theme():
     global theme
     theme = request.json['newTheme']
     return jsonify(success=True)
@@ -36,16 +46,16 @@ def login():
 
 
 @app.route('/profile')
+@check_auth
 def profile():
-    if authType == authType:
-        return render_template('index.html')
-    else:
-        return 'dinax ti ne uchitel'
+    global authType
+    return render_template('index.html', authType=authType)
 
 
 @app.route('/getKlass', methods=['GET'])
+@check_auth
 def getKlass():
-    studList = getStudentsByTeacher('dinosaur_hunter')
+    studList = getStudentsByTeacher('dinosaur_hunter')  # FIXME: заменить на динамичное получение ID учителя
     result = []
     for i in studList:
         temp = getBooksByStudent(i.nickname)
@@ -104,18 +114,26 @@ def getBooksByStudent(stud_nickname):
 
 @app.route('/Kvass52', methods=['POST'])
 def confirming2():
-    global authType
-    user = User.query.filter_by(nickname=request.form['nickname']).first()
-    if user is not None:
-        hash = generate_password_hash(request.form['password'])
-        if check_password_hash(user.password, request.form['password']):
-            bookshelf = Book.query.all()
-            authType = user.usertype_id
-            return render_template('СтраницаФедиЛол.html', bookshelf=bookshelf, num=len(bookshelf))
+    if request.method == "POST":
+        global authType
+        user = User.query.filter_by(nickname=request.form['nickname']).first()
+        if user is not None:
+            hash = generate_password_hash(request.form['password'])
+            if check_password_hash(user.password, request.form['password']):
+                bookshelf = Book.query.all()
+                authType = user.usertype_id
+                return render_template('СтраницаФедиЛол.html', bookshelf=bookshelf, num=len(bookshelf))
+            else:
+                return 'Имя пользователя или пароль указаны неверно'
         else:
             return 'Имя пользователя или пароль указаны неверно'
-    else:
-        return 'Имя пользователя или пароль указаны неверно'
+
+
+@app.route('/Kvass52', methods=['GET'])
+@check_auth
+def confirming2get():
+    if request.method == "GET":
+        return render_template('СтраницаФедиЛол.html')
 
 
 if __name__ == '__main__':

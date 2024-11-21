@@ -16,9 +16,11 @@
                 <div class="inform">Взято книг из библиотеки</div>
                 <div class="inform">Забронировано книг</div>
             </div>
-            <div class="gitler52">
+            <div class="gitler52">1
                 <div class="menu">
-                    <div class="menuitem" data-id=1 id="a" onclick="getKlass('uuuuuuu')">Класс</div>
+                    {% if authType == 2 %}
+                        <div class="menuitem" data-id=1 id="a" onclick="getKlass('uuuuuuu')">Класс</div>
+                    {% endif %}
                     <div class="menuitem" data-id=2 id="b">Личные данные</div>
                     <div class="menuitem" data-id=3 id="c">Мои книги</div>
                     <div class="menuitem" data-id=4 id="d">Новости</div>

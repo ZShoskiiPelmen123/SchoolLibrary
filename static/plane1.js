@@ -41,7 +41,6 @@ function plane1(newTheme) {
 }
 
 function getTheme() {
-    console.log('setThemeFunction in JS')
     $.ajax({
         url: '/getTheme',
         method: 'get',
