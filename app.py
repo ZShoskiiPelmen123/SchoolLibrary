@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, jsonify, redirect
 from models import db, Book, User, UserType, UserGrade
 from werkzeug.security import generate_password_hash, check_password_hash
 from functools import wraps
+from sqlalchemy import and_, or_
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///library.db'
@@ -10,10 +11,6 @@ db.init_app(app)
 
 theme = 'white'
 authType = {'userType': 0, 'userId': 0}
-
-
-
-
 
 def check_auth(f):
     @wraps(f)
@@ -119,7 +116,6 @@ def getBooksByStudent(stud_nickname):
 
 def get_userinfo():
     user = User.query.filter_by(id=authType['userId'], usertype_id=authType['userType']).first()
-    print(user)
     if user is not None:
         authType['first_name'] = user.name
         authType['last_name'] = user.last_name
@@ -139,6 +135,7 @@ def bb():
         book.userid = authType['userId']
         db.session.commit()
     return jsonify(success=True)
+
 
 @app.route('/Kvass52', methods=['POST'])
 def confirming2():
@@ -173,6 +170,17 @@ def logout():
         authType['userType'] = 0
         authType['userId'] = 0
         return render_template('Войти.html')
+
+
+@app.route('/searchBook', methods=['GET'])
+@check_auth
+def search_book():
+    st = request.args.get('searchText')
+    st = '%{}%'.format(st)
+    books = []
+    if request.method == 'GET':
+        books = Book.query.filter(or_(Book.title.like(st), Book.author.like(st), Book.info.like(st))).all()
+        return render_template('СтраницаФедиЛол.html', bookshelf=books, num=len(books))
 
 
 if __name__ == '__main__':
