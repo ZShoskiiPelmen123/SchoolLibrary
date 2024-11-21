@@ -53,6 +53,7 @@ tbody {
     width: 500px;
     height: 50px;
     background-color: rgba(240, 248, 255, 0);
+    display: flex;
 }
 
 .gitler1488 {
@@ -212,4 +213,10 @@ tbody {
     font-weight: 600;
     font-size: 40px;
     background-color: rgba(0, 255, 255, 0);
+}
+
+.exit{
+    margin: auto;
+    height: 80%;
+    width: 80%;
 }
