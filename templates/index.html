@@ -18,7 +18,7 @@
             </div>
             <div class="gitler52">1
                 <div class="menu">
-                    {% if authType == 2 %}
+                    {% if authType.userId == 2 %}
                         <div class="menuitem" data-id=1 id="a" onclick="getKlass('uuuuuuu')">Класс</div>
                     {% endif %}
                     <div class="menuitem" data-id=2 id="b">Личные данные</div>
@@ -39,7 +39,7 @@
                     <tr>
                         <td><b>Имя</b></td>
                         <td><b>Фамилия</b></td>
-                        <td><b>Книг взято</b></td>
+                        <td><b>Книг взято: </b></td>
                         <td>
                             <table class="innerTable" border="1" border-color="black">
                                 <thead>
@@ -67,20 +67,20 @@
                         </div>
                     </div>
                     <div class="maindannie">
-                        <div class="row1"> Фамилия
+                        <div class="row1"> Фамилия: {{ authType.last_name }}
                             <div class="Familia"></div>
                         </div>
-                        <div class="row1"> Имя
+                        <div class="row1"> Имя: {{ authType.first_name }}
                             <div class="name"></div>
                         </div>
-                        <div class="row1"> Отчество
+                        <div class="row1"> Отчество:
                             <div class="otchestvo"></div>
                         </div>
-                        <div class="row1"> Класс
+                        <div class="row1"> Класс: {{ authType.grade }}
                             <div class="classnomber"></div>
                             <div class="classbykva"></div>
                         </div>
-                        <div class="row1">СНИЛС
+                        <div class="row1">СНИЛС:
                             <div class="SNILS"></div>
                         </div>
                     </div>
