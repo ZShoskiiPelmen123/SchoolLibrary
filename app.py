@@ -9,7 +9,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db.init_app(app)
 
 theme = 'white'
-authType = 0
+authType = {'userType': 0, 'userId': 0}
 
 
 
@@ -18,7 +18,7 @@ authType = 0
 def check_auth(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
-        if authType == 0:
+        if authType['userType'] == 0:
             return redirect('/')
         return f(*args, **kwargs)
     return decorated_function
@@ -52,6 +52,7 @@ def login():
 @check_auth
 def profile():
     global authType
+    get_userinfo()
     return render_template('index.html', authType=authType)
 
 
@@ -91,7 +92,8 @@ def confirming1():
             db.session.add(user)
             db.session.commit()
             bookshelf = Book.query.all()
-            authType = user.usertype_id
+            authType['userType'] = user.usertype_id
+            authType['userId'] = user.id
             return render_template('СтраницаФедиЛол.html', bookshelf=bookshelf, num=len(bookshelf))
         else:
             return "user already exists"
@@ -115,6 +117,15 @@ def getBooksByStudent(stud_nickname):
         return Book.query.filter_by(userid=stud_nickname.id).all()
 
 
+def get_userinfo():
+    user = User.query.filter_by(id=authType['userId'], usertype_id=authType['userType']).first()
+    print(user)
+    if user is not None:
+        authType['first_name'] = user.name
+        authType['last_name'] = user.last_name
+        authType['grade'] = "test"
+
+
 @app.route('/Kvass52', methods=['POST'])
 def confirming2():
     if request.method == "POST":
@@ -124,7 +135,8 @@ def confirming2():
             hash = generate_password_hash(request.form['password'])
             if check_password_hash(user.password, request.form['password']):
                 bookshelf = Book.query.all()
-                authType = user.usertype_id
+                authType['userType'] = user.usertype_id
+                authType['userId'] = user.id
                 return render_template('СтраницаФедиЛол.html', bookshelf=bookshelf, num=len(bookshelf))
             else:
                 return 'Имя пользователя или пароль указаны неверно'
@@ -141,8 +153,10 @@ def confirming2get():
 
 @app.route('/Kvass53', methods=['GET'])
 def logout():
+    print(authType)
     if request.method == "GET":
-        authType = 0
+        authType['userType'] = 0
+        authType['userId'] = 0
         return render_template('Войти.html')
 
 
