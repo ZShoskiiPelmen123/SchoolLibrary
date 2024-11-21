@@ -34,8 +34,31 @@ function getKlass() {
     });
 }
 
+function bookBooking(book_id) {
+    $.ajax({
+        url: '/bb',
+        data: JSON.stringify({book_id: book_id}),
+        datatype: JSON,
+        contentType: 'application/json;charset=UTF-8',
+        method: 'post',
+        success: function (res) {
+            $('#book'+book_id).attr("disabled", true);
+        },
+        error: function (res) {
+            alert("Книга недоступна")
+        }
+    });
+}
+
 function logout() {
     window.location.href = '/Kvass53'
 }
 
+function disableBooked() {
+    for (const el of document.getElementsByClassName('bbb'))
+        if (el.dataset.userid !== "None")
+            el.setAttribute('disabled', 'disabled')
+}
+
 initEvents();
+disableBooked();

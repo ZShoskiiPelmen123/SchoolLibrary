@@ -1,6 +1,8 @@
 {% extends "baseHTML.html" %}
 {% block style %}
     <link href="static/FedyaStyle.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="static/jquery-3.7.1.min.js" defer></script>
+    <script type="text/javascript" src="static/script.js" defer></script>
 {% endblock %}
 <body style="background-color: aqua">
 {% block Kvass %}
@@ -42,12 +44,14 @@
             <td><b>Название книги</b></td>
             <td><b>Автор книги</b></td>
             <td><b>Информация о книге</b></td>
+            <td><b>BB</b></td>
         </tr>
         {% for book in bookshelf %}
         <tr>
             <td>{{ book.title }}</td>
             <td>{{ book.author }}</td>
             <td>{{ book.info }}</td>
+            <td><button class="bbb" id="book{{ book.id }}" data-userid="{{ book.userid }}" onclick="bookBooking({{ book.id }})">Взять</button></td>
         </tr>
         {% endfor %}
         </table>

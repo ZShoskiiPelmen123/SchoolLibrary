@@ -123,8 +123,22 @@ def get_userinfo():
     if user is not None:
         authType['first_name'] = user.name
         authType['last_name'] = user.last_name
-        authType['grade'] = "test"
+        authType['grade'] = UserGrade.query.filter_by(id=user.usergrade_id).first().name
 
+
+@app.route('/bb', methods=['POST'])
+def bb():
+    book_id = request.json['book_id']
+    print(book_id)
+    if request.method == "POST":
+        book = Book.query.filter_by(id=book_id).first()
+        if book is None:
+            return jsonify(error='Книга не найдена'), 400
+        elif book.userid is not None:
+            return jsonify(error='Книга уже взята'), 400
+        book.userid = authType['userId']
+        db.session.commit()
+    return jsonify(success=True)
 
 @app.route('/Kvass52', methods=['POST'])
 def confirming2():
@@ -148,7 +162,8 @@ def confirming2():
 @check_auth
 def confirming2get():
     if request.method == "GET":
-        return render_template('СтраницаФедиЛол.html')
+        bookshelf = Book.query.all()
+        return render_template('СтраницаФедиЛол.html', bookshelf=bookshelf, num=len(bookshelf))
 
 
 @app.route('/Kvass53', methods=['GET'])
