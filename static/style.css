@@ -104,7 +104,7 @@ tbody {
     border-style: solid;
 }
 
-.menuitem:nth-child(2) {
+.menuitem:nth-child(1) {
     background-color: rgb(143, 154, 163);
 }
 
