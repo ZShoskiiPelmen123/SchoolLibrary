@@ -136,5 +136,12 @@ def confirming2get():
         return render_template('СтраницаФедиЛол.html')
 
 
+@app.route('/Kvass53', methods=['GET'])
+def logout():
+    if request.method == "GET":
+        authType = 0
+        return render_template('Войти.html')
+
+
 if __name__ == '__main__':
     app.run()

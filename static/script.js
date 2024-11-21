@@ -11,7 +11,7 @@ let initEvents = function() {
     }
 }
 
-function getKlass(tn) {
+function getKlass() {
     $.ajax({
         url: '/getKlass',
         data: {teacher_name: tn},
@@ -32,6 +32,10 @@ function getKlass(tn) {
             }
         }
     });
+}
+
+function logout() {
+    window.location.href = '/Kvass53'
 }
 
 initEvents();
