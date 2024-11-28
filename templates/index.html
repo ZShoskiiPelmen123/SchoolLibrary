@@ -26,7 +26,7 @@
                         <div class="menuitem" data-id=1 id="a" onclick="getKlass()">Класс</div>
                     {% endif %}
                     <div class="menuitem" data-id=2 id="b">Личные данные</div>
-                    <div class="menuitem" data-id=3 id="c">Мои книги</div>
+                    <div class="menuitem" data-id=3 id="c" onclick="getMyBooks()">Мои книги</div>
                     <div class="menuitem" data-id=4 id="d">Новости</div>
                     <div class="menuitem" data-id=5 id="e">О нас</div>
                     <div class="menuitem" data-id=6 id="f">Настройки</div>
@@ -91,6 +91,7 @@
                 </div>
             </div>
             <div class="main" data-id=3 id="main3">
+                {# TODO: доделать проверку есть ли взятые книги#}
                 <div class="test">У вас нет взятых книг</div>
             </div>
             <div class="main" data-id=4 id="main4">

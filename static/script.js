@@ -33,6 +33,28 @@ function getKlass() {
     });
 }
 
+function getMyBooks() {
+    $.ajax({
+        url: '/getBooksByStudent',
+        method: 'get',
+        success: function (res) {
+            $('#tbodyStud tr').remove();
+            for (let i = 0; i < res.length; i++) {
+                $('#tbodyStud').append("<tr><td>" + res[i].name + "</td><td>" + res[i].last_name + "</td><td>" +
+                    res[i].books_count + "</td><td></td></tr>");
+                if (res[i].books_count > 0) {
+                    $('#tbodyStud td:last').append("<table class='innerTable' border-color='black' border='1'>" +
+                        "<tbody></tbody></table>")
+                    for (let j = 0; j < res[i].books.length; j++) {
+                        $('.innerTable:last tbody').append("<tr><td>" + res[i].books[j].author + "</td><td>" +
+                            res[i].books[j].title + "</td></tr>")
+                    }
+                }
+            }
+        }
+    });
+}
+
 function bookBooking(book_id) {
     $.ajax({
         url: '/bb',

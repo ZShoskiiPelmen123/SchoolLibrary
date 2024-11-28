@@ -53,7 +53,7 @@ def getKlass():
     print(*studList)
     result = []
     for i in studList:
-        temp = getBooksByStudent(i.nickname)
+        temp = getBooksByStudent(i.id)
         books = []
         for j in temp:
             books.append({"author": j.author, "title": j.title})
@@ -93,6 +93,12 @@ def confirming1():
         return "кто ты?"
 
 
+@app.route('/getMyBooks')
+@check_auth
+def getMyBooks():
+    return getBooksByStudent(authType['userId'])
+
+
 def getStudentsByTeacher():
     teacher = User.query.filter_by(id=authType['userId'], usertype_id=authType['userTypeId']).first()
     if teacher is None:
@@ -101,12 +107,11 @@ def getStudentsByTeacher():
         return User.query.filter_by(usergrade_id=teacher.usergrade_id, usertype_id=1)
 
 
-def getBooksByStudent(stud_nickname):
-    stud_nickname = User.query.filter_by(nickname=stud_nickname, usertype_id=1).first()
-    if stud_nickname is None:
+def getBooksByStudent(stud_id):
+    books = Book.query.filter_by(userid=stud_id).all()
+    if books is None:
         return {}
-    else:
-        return Book.query.filter_by(userid=stud_nickname.id).all()
+    return books
 
 
 def get_userinfo():
