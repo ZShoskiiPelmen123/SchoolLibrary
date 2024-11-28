@@ -14,7 +14,6 @@ let initEvents = function() {
 function getKlass() {
     $.ajax({
         url: '/getKlass',
-        data: {teacher_name: tn},
         method: 'get',
         success: function (res) {
             $('#tbodyStud tr').remove();

@@ -20,10 +20,10 @@
                 <div class="inform">Взято книг из библиотеки</div>
                 <div class="inform">Забронировано книг</div>
             </div>
-            <div class="gitler52">1
+            <div class="gitler52">
                 <div class="menu">
-                    {% if authType.userId == 2 %}
-                        <div class="menuitem" data-id=1 id="a" onclick="getKlass('uuuuuuu')">Класс</div>
+                    {% if authType.userTypeId == 2 %}
+                        <div class="menuitem" data-id=1 id="a" onclick="getKlass()">Класс</div>
                     {% endif %}
                     <div class="menuitem" data-id=2 id="b">Личные данные</div>
                     <div class="menuitem" data-id=3 id="c">Мои книги</div>

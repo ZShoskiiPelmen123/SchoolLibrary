@@ -4,7 +4,7 @@
         <div class="Mewing"><img id="mewing" src="static/Безымянный.png"></div>
         <form method="post" class="authForm" action="/Kvass1488">
             <div class="Text1">Регистрация</div>
-            <select name="userType">
+            <select name="userTypeId">
                     {% for book in KvassMnogo %}
                         <option value={{ book.name }}>{{ book.name }}</option>
                     {% endfor %}

@@ -10,12 +10,12 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db.init_app(app)
 
 theme = 'white'
-authType = {'userType': 0, 'userId': 0}
+authType = {'userTypeId': 0, 'userId': 0}
 
 def check_auth(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
-        if authType['userType'] == 0:
+        if authType['userTypeId'] == 0:
             return redirect('/')
         return f(*args, **kwargs)
     return decorated_function
@@ -31,13 +31,6 @@ def set_theme():
     global theme
     theme = request.json['newTheme']
     return jsonify(success=True)
-
-
-@app.route('/egg')
-def hello_world():  # put application's code here
-    bookList = getBooksByStudent(getStudentsByTeacher('uuuuuuu')[0].nickname)
-    print(*[a.title for a in bookList])
-    return 'Hello World!'
 
 
 @app.route('/')
@@ -56,7 +49,8 @@ def profile():
 @app.route('/getKlass', methods=['GET'])
 @check_auth
 def getKlass():
-    studList = getStudentsByTeacher('dinosaur_hunter')  # FIXME: заменить на динамичное получение ID учителя
+    studList = getStudentsByTeacher()
+    print(*studList)
     result = []
     for i in studList:
         temp = getBooksByStudent(i.nickname)
@@ -75,12 +69,13 @@ def register():
     return render_template('Регистрация.html', KvassMnogo=KvassMnogo, KvassInfinity=KvassInfinity)
 
 
+# регистрация
 @app.route('/Kvass1488', methods=['GET', 'POST'])
 def confirming1():
     global authType
     if request.method == 'POST':
         if User.query.filter_by(nickname=request.form['nickname']).first() is None:
-            usertype = UserType.query.filter_by(name=request.form['userType']).first()
+            usertype = UserType.query.filter_by(name=request.form['userTypeId']).first()
             usergrade = UserGrade.query.filter_by(name=request.form['userGrade']).first()
             hashed_password = generate_password_hash(request.form['password'])
             user = User(nickname=request.form['nickname'], name=request.form['name'],
@@ -89,7 +84,7 @@ def confirming1():
             db.session.add(user)
             db.session.commit()
             bookshelf = Book.query.all()
-            authType['userType'] = user.usertype_id
+            authType['userTypeId'] = user.usertype_id
             authType['userId'] = user.id
             return render_template('СтраницаФедиЛол.html', bookshelf=bookshelf, num=len(bookshelf))
         else:
@@ -98,8 +93,8 @@ def confirming1():
         return "кто ты?"
 
 
-def getStudentsByTeacher(teacher):
-    teacher = User.query.filter_by(nickname=teacher, usertype_id=2).first()
+def getStudentsByTeacher():
+    teacher = User.query.filter_by(id=authType['userId'], usertype_id=authType['userTypeId']).first()
     if teacher is None:
         return {}
     else:
@@ -115,7 +110,7 @@ def getBooksByStudent(stud_nickname):
 
 
 def get_userinfo():
-    user = User.query.filter_by(id=authType['userId'], usertype_id=authType['userType']).first()
+    user = User.query.filter_by(id=authType['userId'], usertype_id=authType['userTypeId']).first()
     if user is not None:
         authType['first_name'] = user.name
         authType['last_name'] = user.last_name
@@ -146,7 +141,7 @@ def confirming2():
             hash = generate_password_hash(request.form['password'])
             if check_password_hash(user.password, request.form['password']):
                 bookshelf = Book.query.all()
-                authType['userType'] = user.usertype_id
+                authType['userTypeId'] = user.usertype_id
                 authType['userId'] = user.id
                 return render_template('СтраницаФедиЛол.html', bookshelf=bookshelf, num=len(bookshelf))
             else:
@@ -167,7 +162,7 @@ def confirming2get():
 def logout():
     print(authType)
     if request.method == "GET":
-        authType['userType'] = 0
+        authType['userTypeId'] = 0
         authType['userId'] = 0
         return render_template('Войти.html')
 
