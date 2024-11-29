@@ -51,7 +51,25 @@
             <td>{{ book.title }}</td>
             <td>{{ book.author }}</td>
             <td>{{ book.info }}</td>
-            <td><button class="bbb" id="book{{ book.id }}" data-userid="{{ book.userid }}" onclick="bookBooking({{ book.id }})">Взять</button></td>
+            {% if authType.userTypeId == 1 %} {#ученик#}
+                {% if book.bookstatusid == 1 %}
+                <td><button class="bbb" id="book{{ book.id }}" data-userid="{{ book.userid }}" data-bookstatusid="{{ book.bookstatusid }}" onclick="bookBooking({{ book.id }})">Забронировать</button></td>
+                {% elif book.bookstatusid == 2 %}
+                <td><button class="bbb" id="book{{ book.id }}" data-userid="{{ book.userid }}" data-bookstatusid="{{ book.bookstatusid }}" onclick="cancelBookBooking({{ book.id }})">Отменить</button></td>
+                {% elif book.bookstatusid == 3 %}
+                <td><button class="bbb" id="book{{ book.id }}" data-userid="{{ book.userid }}" data-bookstatusid="{{ book.bookstatusid }}" disabled>Выдана</button></td>
+                {% endif %}
+            {% elif authType.userTypeId == 2 %} {#классный руководитель#}
+            <td><button class="bbb" id="book{{ book.id }}" data-userid="{{ book.userid }}" data-bookstatusid="{{ book.bookstatusid }}" onclick="bookBooking({{ book.id }})">Взять</button></td>
+            {% elif authType.userTypeId == 3 %} {#библиотекарь#}
+                {% if book.bookstatusid == 1 %}
+                <td><button class="bbb" id="book{{ book.id }}" data-userid="{{ book.userid }}" data-bookstatusid="{{ book.bookstatusid }}" disabled>Доступна</button></td>
+                {% elif book.bookstatusid == 2 %}
+                <td><button class="bbb" id="book{{ book.id }}" data-userid="{{ book.userid }}" data-bookstatusid="{{ book.bookstatusid }}" onclick="giveBook({{ book.id }})">Выдать</button></td>
+                {% elif book.bookstatusid == 3 %}
+                <td><button class="bbb" id="book{{ book.id }}" data-userid="{{ book.userid }}" data-bookstatusid="{{ book.bookstatusid }}" onclick="takeBook({{ book.id }})">Вернуть</button></td>
+                {% endif %}
+            {% endif %}
         </tr>
         {% endfor %}
         </table>

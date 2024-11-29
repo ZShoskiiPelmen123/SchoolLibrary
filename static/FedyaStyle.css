@@ -85,6 +85,10 @@ button {
     border-radius: 40px;
 }
 
+td button {
+    width: 100%;
+}
+
 div.menu{
     margin: 0 auto;
 }

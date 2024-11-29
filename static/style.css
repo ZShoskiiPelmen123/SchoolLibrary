@@ -4,6 +4,10 @@
     margin: 15px;
 }
 
+#tableMyBooks {
+    margin: 10px auto;
+}
+
 .innerTable {
     width: 100%;
 }

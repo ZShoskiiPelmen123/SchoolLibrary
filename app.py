@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, jsonify, redirect
-from models import db, Book, User, UserType, UserGrade
+from models import db, Book, User, UserType, UserGrade, BookStatus
 from werkzeug.security import generate_password_hash, check_password_hash
 from functools import wraps
 from sqlalchemy import and_, or_
@@ -50,7 +50,6 @@ def profile():
 @check_auth
 def getKlass():
     studList = getStudentsByTeacher()
-    print(*studList)
     result = []
     for i in studList:
         temp = getBooksByStudent(i.id)
@@ -86,7 +85,7 @@ def confirming1():
             bookshelf = Book.query.all()
             authType['userTypeId'] = user.usertype_id
             authType['userId'] = user.id
-            return render_template('СтраницаФедиЛол.html', bookshelf=bookshelf, num=len(bookshelf))
+            return render_template('СтраницаФедиЛол.html', bookshelf=bookshelf, num=len(bookshelf), authType=authType)
         else:
             return "user already exists"
     if request.method == 'GET':
@@ -96,6 +95,8 @@ def confirming1():
 @app.route('/getMyBooks')
 @check_auth
 def getMyBooks():
+    response = jsonify()
+    response.status_code = 200
     return getBooksByStudent(authType['userId'])
 
 
@@ -108,10 +109,11 @@ def getStudentsByTeacher():
 
 
 def getBooksByStudent(stud_id):
+    result = []
     books = Book.query.filter_by(userid=stud_id).all()
-    if books is None:
-        return {}
-    return books
+    for i in books:
+        result.append({'title': i.title, 'author': i.author, 'info': i.info})
+    return result
 
 
 def get_userinfo():
@@ -122,10 +124,11 @@ def get_userinfo():
         authType['grade'] = UserGrade.query.filter_by(id=user.usergrade_id).first().name
 
 
+# бронирование книги
 @app.route('/bb', methods=['POST'])
+@check_auth
 def bb():
     book_id = request.json['book_id']
-    print(book_id)
     if request.method == "POST":
         book = Book.query.filter_by(id=book_id).first()
         if book is None:
@@ -133,8 +136,65 @@ def bb():
         elif book.userid is not None:
             return jsonify(error='Книга уже взята'), 400
         book.userid = authType['userId']
+        book.bookstatusid = 2
         db.session.commit()
     return jsonify(success=True)
+
+
+# отмена бронирования книги
+@app.route('/cb', methods=['POST'])
+@check_auth
+def cb():
+    book_id = request.json['book_id']
+    if request.method == "POST":
+        book = Book.query.filter_by(id=book_id, userid=authType['userId']).first()
+        if book is None:
+            return jsonify(error='Книга не найдена'), 400
+        book.userid = None
+        book.bookstatusid = 1
+        db.session.commit()
+    return jsonify(success=True)
+
+
+# выдать книгу (только для библиотекаря)
+@app.route('/gb', methods=['POST'])
+@check_auth
+def gb():
+    if authType['userTypeId'] == 3:
+        book_id = request.json['book_id']
+        if request.method == "POST":
+            book = Book.query.filter_by(id=book_id).first()
+            if book is None:
+                return jsonify(error='Книга не найдена'), 400
+            book.bookstatusid = 3
+            db.session.commit()
+        return jsonify(success=True)
+    else:
+        return None
+
+
+# взять книгу, то есть сдать книгу, то есть принять книгу (только для библиотекаря)
+@app.route('/tb', methods=['POST'])
+@check_auth
+def tb():
+    if authType['userTypeId'] == 3:
+        book_id = request.json['book_id']
+        if request.method == "POST":
+            book = Book.query.filter_by(id=book_id).first()
+            if book is None:
+                return jsonify(error='Книга не найдена'), 400
+            book.userid = None
+            book.bookstatusid = 1
+            db.session.commit()
+        return jsonify(success=True)
+    else:
+        return None
+
+
+@app.route('/getCurrentUserId', methods=['GET'])
+@check_auth
+def get_current_user_id():
+    return authType, 200
 
 
 @app.route('/Kvass52', methods=['POST'])
@@ -148,7 +208,7 @@ def confirming2():
                 bookshelf = Book.query.all()
                 authType['userTypeId'] = user.usertype_id
                 authType['userId'] = user.id
-                return render_template('СтраницаФедиЛол.html', bookshelf=bookshelf, num=len(bookshelf))
+                return render_template('СтраницаФедиЛол.html', bookshelf=bookshelf, num=len(bookshelf), authType=authType)
             else:
                 return 'Имя пользователя или пароль указаны неверно'
         else:
@@ -160,12 +220,11 @@ def confirming2():
 def confirming2get():
     if request.method == "GET":
         bookshelf = Book.query.all()
-        return render_template('СтраницаФедиЛол.html', bookshelf=bookshelf, num=len(bookshelf))
+        return render_template('СтраницаФедиЛол.html', bookshelf=bookshelf, num=len(bookshelf), authType=authType)
 
 
 @app.route('/Kvass53', methods=['GET'])
 def logout():
-    print(authType)
     if request.method == "GET":
         authType['userTypeId'] = 0
         authType['userId'] = 0
@@ -180,7 +239,7 @@ def search_book():
     books = []
     if request.method == 'GET':
         books = Book.query.filter(or_(Book.title.like(st), Book.author.like(st), Book.info.like(st))).all()
-        return render_template('СтраницаФедиЛол.html', bookshelf=books, num=len(books))
+        return render_template('СтраницаФедиЛол.html', bookshelf=books, num=len(books), authType=authType)
 
 
 if __name__ == '__main__':
