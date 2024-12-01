@@ -50,12 +50,13 @@ def profile():
 @check_auth
 def getKlass():
     studList = getStudentsByTeacher()
+    print("studList", studList)
     result = []
     for i in studList:
         temp = getBooksByStudent(i.id)
         books = []
         for j in temp:
-            books.append({"author": j.author, "title": j.title})
+            books.append({"author": j['author'], "title": j['title']})
         # books["books_count"] = str(len(temp))
         result.append({'name': i.name, 'last_name': i.last_name, 'books': books, "books_count": len(temp)})
     return result
@@ -105,12 +106,12 @@ def getStudentsByTeacher():
     if teacher is None:
         return {}
     else:
-        return User.query.filter_by(usergrade_id=teacher.usergrade_id, usertype_id=1)
+        return User.query.filter_by(usergrade_id=teacher.usergrade_id, usertype_id=1).all()
 
 
 def getBooksByStudent(stud_id):
     result = []
-    books = Book.query.filter_by(userid=stud_id).all()
+    books = Book.query.filter_by(userid=stud_id, bookstatusid=3).all()
     for i in books:
         result.append({'title': i.title, 'author': i.author, 'info': i.info})
     return result
