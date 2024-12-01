@@ -44,7 +44,9 @@
             <td><b>Название книги</b></td>
             <td><b>Автор книги</b></td>
             <td><b>Информация о книге</b></td>
+            {% if authType.userTypeId != 2 %} {#классный руководитель#}
             <td><b>BB</b></td>
+            {% endif %}
         </tr>
         {% for book in bookshelf %}
         <tr>
@@ -59,8 +61,6 @@
                 {% elif book.bookstatusid == 3 %}
                 <td><button class="bbb" id="book{{ book.id }}" data-userid="{{ book.userid }}" data-bookstatusid="{{ book.bookstatusid }}" disabled>Выдана</button></td>
                 {% endif %}
-            {% elif authType.userTypeId == 2 %} {#классный руководитель#}
-            <td><button class="bbb" id="book{{ book.id }}" data-userid="{{ book.userid }}" data-bookstatusid="{{ book.bookstatusid }}" onclick="bookBooking({{ book.id }})">Взять</button></td>
             {% elif authType.userTypeId == 3 %} {#библиотекарь#}
                 {% if book.bookstatusid == 1 %}
                 <td><button class="bbb" id="book{{ book.id }}" data-userid="{{ book.userid }}" data-bookstatusid="{{ book.bookstatusid }}" disabled>Доступна</button></td>

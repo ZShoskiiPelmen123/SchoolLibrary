@@ -6,7 +6,7 @@
             <div class="Text1">Регистрация</div>
             <select name="userTypeId">
                     {% for book in KvassMnogo %}
-                        <option value={{ book.name }}>{{ book.name }}</option>
+                        <option value={{ book.id }}>{{ book.name }}</option>
                     {% endfor %}
             </select>
             <input type="text" required name="nickname" placeholder="Никнейм">
