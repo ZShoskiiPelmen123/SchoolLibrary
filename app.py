@@ -75,7 +75,7 @@ def confirming1():
     global authType
     if request.method == 'POST':
         if User.query.filter_by(nickname=request.form['nickname']).first() is None:
-            usertype = UserType.query.filter_by(name=request.form['userTypeId']).first()
+            usertype = UserType.query.filter_by(id=request.form['userTypeId']).first()
             usergrade = UserGrade.query.filter_by(name=request.form['userGrade']).first()
             hashed_password = generate_password_hash(request.form['password'])
             user = User(nickname=request.form['nickname'], name=request.form['name'],
