@@ -12,6 +12,7 @@ db.init_app(app)
 theme = 'white'
 authType = {'userTypeId': 0, 'userId': 0}
 
+
 def check_auth(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
@@ -43,7 +44,7 @@ def login():
 def profile():
     global authType
     get_userinfo()
-    return render_template('index.html', authType=authType)
+    return render_template('index.html', authType=authType, )
 
 
 @app.route('/getKlass', methods=['GET'])
@@ -119,10 +120,14 @@ def getBooksByStudent(stud_id):
 
 def get_userinfo():
     user = User.query.filter_by(id=authType['userId'], usertype_id=authType['userTypeId']).first()
+    bbCount = Book.query.filter_by(userid=user.id, bookstatusid=2).count()
+    gbCount = Book.query.filter_by(userid=user.id, bookstatusid=3).count()
     if user is not None:
         authType['first_name'] = user.name
         authType['last_name'] = user.last_name
         authType['grade'] = UserGrade.query.filter_by(id=user.usergrade_id).first().name
+        authType['bbcount'] = bbCount
+        authType['gbcount'] = gbCount
 
 
 # бронирование книги
