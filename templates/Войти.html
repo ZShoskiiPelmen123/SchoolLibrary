@@ -1,26 +1,25 @@
 {% extends "baseHTML.html" %}
 {% block Kvass %}
-    <div class="Main">
-        <div class="Theme"></div>
-            <button class="Button"></button>
-            <div class="Text3">Recommended ↑</div>
-        </div>
-        <div class="Kvass1">
-            <div class="Mewing"><img src="static/Безымянный.png"></div>
-            <div class="Name">Название сайта</div>
-            <form class="Войти">
-                <div class="Text1">Войти</div>
-                <input type="text" placeholder="Никнейм">
-                <input type="password" placeholder="Пароль">
-                <div class="OtherDisplay">
-                    <div class="Text2">С чужого устр.</div>
-                    <input type="checkbox">
-                </div>
-                <button class="Enter"><a href="/Kvass52">Продолжить</a></button>
-                <button type="submit" class="Register"><a href="/registration">Регистрация</a></button>
+    <script type="text/javascript" src="static/plane1.js" defer></script>
+    <link href="static/Войти.css" rel="stylesheet" type="text/css"/>
+    <div class="Kvass1" id="Kvass1">
+        <div class="Mewing" id="Mewing"></div>
+        <div class="Name" id="Name">Библиотека школы № 2098</div>
+        <div class="authForm" style="background-color: rgb(0, 0, 0, 0);">
+            <input type="text" placeholder="Имя пользователя" name="nickname" form="enter" class="vvod">
+            <input type="password" placeholder="Пароль" name="password" form="enter" class="vvod" id="vvod">
+            <div class="OtherDisplay" id="OtherDisplay">
+                <div class="Text2" id="Text2">Показать пароль</div>
+                <input type="checkbox"class="chekker">
+            </div>
+            <form action="/Kvass52" method="post" id="enter">
+                <button class="Enter">Войти</button>
             </form>
+            <div class="Palka69" id="Palka69"></div>
+            <form action="/registration">
+                <button class="Register">Регистрация</button>
+            </form>
+            <div class="change" id="change_password"> Забыли пароль? </div>
         </div>
     </div>
 {% endblock Kvass %}
-</body>
-</html>

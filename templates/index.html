@@ -1,0 +1,118 @@
+{% extends "baseHTML.html" %}
+{% block style %}
+    <link href="static/style.css" rel="stylesheet" type="text/css"/>
+    <script type="text/javascript" src="static/jquery-3.7.1.min.js" defer></script>
+    <script type="text/javascript" src="static/script.js" defer></script>
+{% endblock %}
+{% block Kvass %}
+    {% block header %}
+    {% endblock %}
+    <div id="main0">
+        <div class="submain0">
+            <div class="gitler1488">
+                <div class="space">
+                    <a class="exit" href="/Kvass52">
+                        <button class="exit">Назад</button>
+                    </a>
+                </div>
+                <div class="lichni_kab">ЛИЧНЫЙ КАБИНЕТ</div>
+                <div class="inform">Дата регистрации</div>
+                <div class="inform">Взято книг из библиотеки: {{ authType.gbcount }}</div>
+                <div class="inform">Забронировано книг: {{ authType.bbcount }}</div>
+            </div>
+            <div class="gitler52">
+                <div class="menu">
+                    {% if authType.userTypeId == 2 %}
+                        <div class="menuitem" data-id=1 id="a" onclick="getKlass()">Класс</div>
+                    {% endif %}
+                    <div class="menuitem" data-id=2 id="b">Личные данные</div>
+                    <div class="menuitem" data-id=3 id="c" onclick="getMyBooks()">Мои книги</div>
+                    <div class="menuitem" data-id=4 id="d">Новости</div>
+                    <div class="menuitem" data-id=5 id="e">О нас</div>
+                    <div class="menuitem" data-id=6 id="f">Настройки</div>
+                    <div class="menuitem" data-id=7 id="z" onclick="logout()">Выйти</div>
+                </div>
+            </div>
+        </div>
+        <div class="palka1488"></div>
+        <div class="content">
+            <div class="main" data-id=1 id="main1">
+                <table id="outerTable" border="1" border-color="black">
+                    <caption>Ученики</caption>
+                    <thead>
+                    <tr>
+                        <td><b>Имя</b></td>
+                        <td><b>Фамилия</b></td>
+                        <td><b>Книг взято: </b></td>
+                        <td>
+                            <table class="innerTable" border="1" border-color="black">
+                                <thead>
+                                <tr>
+                                    <td><b>Автор</b></td>
+                                    <td><b>Название</b></td>
+                                </tr>
+                                </thead>
+                            </table>
+                        </td>
+                    </tr>
+                    </thead>
+                    <tbody id="tbodyStud"></tbody>
+                </table>
+            </div>
+            <div class="main" data-id=2 id="main2">
+                <div class="putin">
+                    <div class="submain10">
+                        <div class="avatarkabutton">
+                            <img class="avatarka" src="istockphoto-2041572395-612x612.jpg">
+                            <div class="avatext1"> Ваша фотография</div>
+                            <div class="avatext2"> Размер загружаемого файла</div>
+                            <div class="avatext3"> не должен превышать 5 Мб</div>
+                            <div class="savefoto"> Изменить профиль</div>
+                        </div>
+                    </div>
+                    <div class="maindannie">
+                        <div class="row1"> Фамилия: {{ authType.last_name }}
+                            <div class="Familia"></div>
+                        </div>
+                        <div class="row1"> Имя: {{ authType.first_name }}
+                            <div class="name"></div>
+                        </div>
+                        <div class="row1"> Отчество:
+                            <div class="otchestvo"></div>
+                        </div>
+                        <div class="row1"> Класс: {{ authType.grade }}
+                            <div class="classnomber"></div>
+                            <div class="classbykva"></div>
+                        </div>
+                        <div class="row1">СНИЛС:
+                            <div class="SNILS"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="main" data-id=3 id="main3">
+{#                <div class="test">У вас нет взятых книг</div>#}
+                <table border="1" border-color="black" id="tableMyBooks">
+                <tr>
+                    <td><b>Название книги</b></td>
+                    <td><b>Автор книги</b></td>
+                    <td><b>Информация о книге</b></td>
+                </tr>
+                </table>
+            </div>
+            <div class="main" data-id=4 id="main4">
+                <div class="test">Новости: вчера какого-то ученика из нано школы збил динозаврБ убегающий от зама
+                    директора
+                </div>
+            </div>
+            <div class="main" data-id=5 id="main5">
+                <div class="test">ТимченкоГлеб</div>
+                <div class="test">Мальцев Федро</div>
+            </div>
+            <div class="main" data-id=6 id="main6">
+                <div class="test">Тема</div>
+            </div>
+            <div class="main" data-id=7 id="main7"></div>
+        </div>
+    </div>
+{% endblock Kvass %}
