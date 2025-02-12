@@ -1,8 +1,22 @@
+
+$('body').on('click', '.chekker', function(){
+	if ($(this).is(':checked')){
+		$('#vvod').attr('type', 'text');
+	} else {
+		$('#vvod').attr('type', 'password');
+	}
+});
+
 function plane1(newTheme) {
     let f = document.body;
-    let MI = document.getElementById("mewing");
+    let MI = document.getElementById("Mewing");
     let E = document.getElementsByClassName("authForm");
-    let p = document.getElementById("Kvass1")
+    let p = document.getElementById("Kvass1");
+    let Name = document.getElementById("Name")
+    let Name1 = document.getElementById("Name1")
+    let a = document.getElementById("Palka69");
+    let b = document.getElementById("change_password");
+    let c = document.getElementById("Text2");
     document.getElementById("FedorTiLoh").style.visibility = "hidden";
     let enterBtn = document.getElementsByClassName("Enter")[0];
     //let registerBtn = document.getElementsByClassName("Register")[0];
@@ -15,14 +29,24 @@ function plane1(newTheme) {
         f.style.backgroundColor = "rgba(26,169,127,0.4)";
         f.style.color = "black";
         f.style.backgroundImage = 'url("static/DayBackroundBlur.jpg")';
-        MI.src = "static/Безымянный.png";
-        p.style.backgroundImage = 'url("static/DayBackround.jpg")';
+        MI.style.backgroundImage = 'url("static/logo 1.png")';
+        p.style.backgroundImage = 'url("static/DayBackround.png")';
+        a.style.backgroundColor = 'rgb(190, 190, 190)';
+        b.style.color = '#b9c1e9';
+        c.style.color = '#0c2239';
+        c.style.backgroundColor = 'rgba(256,256,256,20%)';
+        Name.style.backgroundColor = "rgba(135, 177, 185, 0.4)";
+        Name.style.color = "#0c2239";
+        Name1.style.backgroundColor = "rgba(135, 177, 185, 0.4)";
+        Name1.style.color = "#0c2239";
+
         E[0].style.backgroundColor = 'rgb(223, 223, 223, 0)';
+
         for (const item of btnList) {
-            item.style.backgroundColor = 'rgb(211, 211, 211)'
+            item.style.backgroundColor = 'white';
         }
         for (const item of inputList) {
-            item.style.backgroundColor = 'rgba(37,92,202,0.5)';
+            item.style.backgroundColor = 'white';
         }
         if ($('select').length > 0)
             $('select').css('backgroundColor', 'white');
@@ -32,9 +56,17 @@ function plane1(newTheme) {
         f.style.color = "black";
         f.style.backgroundImage = 'url("static/NightBackroundBlur.jpg")';
         f.style.color = "lightgray";
-        MI.src = "static/Тёмный безымянный.png"
-        p.style.backgroundImage = 'url("static/Night Backround.jpg")';
-        E[0].style.backgroundColor = 'rgb(100, 100, 100, 0)'
+        MI.style.backgroundImage = 'url("static/logo 2.png")';
+        p.style.backgroundImage = 'url("static/NightBackround.png")';
+        a.style.backgroundColor = 'rgb(66, 73, 86)';
+        b.style.color = '#003aae';
+        c.style.backgroundColor = "rgba(27, 26, 58, 0.6)";
+        c.style.color = "rgb(145, 145 ,145)";
+        E[0].style.backgroundColor = 'rgba(100, 100, 100, 0)'
+        Name.style.backgroundColor = "rgba(27, 26, 58, 0.6)";
+        Name.style.color = "rgb(145, 145 ,145)"
+        Name1.style.backgroundColor = "rgba(27, 26, 58, 0.6)";
+        Name1.style.color = "rgb(145, 145 ,145)"
         for (const item of btnList) {
             item.style.backgroundColor = 'grey';
         }
@@ -45,6 +77,7 @@ function plane1(newTheme) {
             $('select').css('backgroundColor', 'darkgray');
     }
 }
+
 
 function getTheme() {
     console.log('setThemeFunction in JS')
@@ -72,4 +105,6 @@ function setTheme() {
     })
 }
 
+
 getTheme();
+

@@ -6,72 +6,305 @@
 {% endblock %}
 <body style="background-color: aqua">
 {% block Kvass %}
+   <div class="noname">
     <div class="main">
-        <div class="invis1">
-            <div class="icon">
-                <div class="iconInner">
-                    <a href="/profile">
-                        <img src="static/istockphoto-2041572395-612x612.jpg" class="profile">
-                    </a>
-                </div>
-            </div>
-            <div class="search">
-                <form class="lenin" method="get" action="/searchBook">
-                    <input type="text" placeholder="Поиск" class="POISKTEXT" name="searchText">
-                </form>
-            </div>
-            <div class="menu">
-                <button class="menu" data-hamburger="true" aria-label="Меню">
-                    <div class="submenu">
-                        <span class="submenu1"></span>
-                        <span class="submenu2"></span>
-                        <span class="submenu2"></span>
-                        <span class="submenu3"></span>
-                    </div>
-                </button>
+        <div class="icon">
+            <div class="iconInner">
+                <a href="/profile">
+                    <img src="static/istockphoto-2041572395-612x612.jpg" class="profile">
+                </a>
             </div>
         </div>
+        <header class="invis1">
+            <div class="fon">
+                <div class="MainName">
+                    <div class="MainName1"> MY </div>
+                    <div class="MainName2"> LIBRARY </div>
+                </div>
+                <div class="search">
+                    <div class="bookCount">
+                       Количество книг: {{ num }}
+                    </div>
+                    <form class="lenin" method="get" action="/searchBook">
+                        <input type="text" placeholder="Поиск книги" class="POISKTEXT" name="searchText">
+                    </form>
+                </div>
+                <div class="inviz52">
+                    <div class="Phone">
+                        <img class="phoneimg" src="static/Phone.png" >
+                        + 7 969 521 4888
+                    </div>
+                    <div class="email"> MelodieMain334@gmail.com </div>
+                </div>
+                <div class="menu">
+                    <button class="menu" data-hamburger="true" id="menu" aria-label="Меню">
+                        <div class="submenu">
+                            <span class="submenu1"></span>
+                            <span class="submenu2"></span>
+                            <span class="submenu2"></span>
+                            <span class="submenu3"></span>
+                        </div>
+                    </button>
+                </div>
+            </div>
+        </header>
+
      </div>
-    <div class="bookCount">
-        Количество книг: {{ num }}
-    </div>
-    <div>
-            ㅤ
-    </div>
-    <div>
-        <table border="1" border-color="black">
-        <tr>
-            <td><b>Название книги</b></td>
-            <td><b>Автор книги</b></td>
-            <td><b>Информация о книге</b></td>
-            {% if authType.userTypeId != 2 %} {#классный руководитель#}
-            <td><b>BB</b></td>
-            {% endif %}
-        </tr>
+    <div class="cheburekMain">
+    {% if authType.userTypeId == 1 %}
+        <div class="Lol11">Есть в наличии</div>
+        <div class="PalkaPoEbalyDavalka"></div>
+        <div class="cheburek" id="cheburek">
         {% for book in bookshelf %}
-        <tr>
-            <td>{{ book.title }}</td>
-            <td>{{ book.author }}</td>
-            <td>{{ book.info }}</td>
-            {% if authType.userTypeId == 1 %} {#ученик#}
-                {% if book.bookstatusid == 1 %}
-                <td><button class="bbb" id="book{{ book.id }}" data-userid="{{ book.userid }}" data-bookstatusid="{{ book.bookstatusid }}" onclick="bookBooking({{ book.id }})">Забронировать</button></td>
-                {% elif book.bookstatusid == 2 %}
-                <td><button class="bbb" id="book{{ book.id }}" data-userid="{{ book.userid }}" data-bookstatusid="{{ book.bookstatusid }}" onclick="cancelBookBooking({{ book.id }})">Отменить</button></td>
-                {% elif book.bookstatusid == 3 %}
-                <td><button class="bbb" id="book{{ book.id }}" data-userid="{{ book.userid }}" data-bookstatusid="{{ book.bookstatusid }}" disabled>Выдана</button></td>
-                {% endif %}
-            {% elif authType.userTypeId == 3 %} {#библиотекарь#}
-                {% if book.bookstatusid == 1 %}
-                <td><button class="bbb" id="book{{ book.id }}" data-userid="{{ book.userid }}" data-bookstatusid="{{ book.bookstatusid }}" disabled>Доступна</button></td>
-                {% elif book.bookstatusid == 2 %}
-                <td><button class="bbb" id="book{{ book.id }}" data-userid="{{ book.userid }}" data-bookstatusid="{{ book.bookstatusid }}" onclick="giveBook({{ book.id }})">Выдать</button></td>
-                {% elif book.bookstatusid == 3 %}
-                <td><button class="bbb" id="book{{ book.id }}" data-userid="{{ book.userid }}" data-bookstatusid="{{ book.bookstatusid }}" onclick="takeBook({{ book.id }})">Вернуть</button></td>
-                {% endif %}
-            {% endif %}
-        </tr>
+        {% if book.bookstatusid == 1 %}
+            <div class="pryamoygolnik">
+                <div class="bookmain"> {{ book.title }}
+                    <div class="ccc">
+                    {% if authType.userTypeId == 1 %} {#ученик#}
+                        {% if book.bookstatusid == 1 %}
+                            <button class="bbb" id="book{{ book.id }}" data-userid="{{ book.userid }}" data-bookstatusid="{{ book.bookstatusid }}" onclick="bookBooking({{ book.id }})">Забронировать</button>
+                        {% elif book.bookstatusid == 2 %}
+                            <button class="bbb" id="book{{ book.id }}" data-userid="{{ book.userid }}" data-bookstatusid="{{ book.bookstatusid }}" onclick="cancelBookBooking({{ book.id }})">Отменить</button>
+                        {% elif book.bookstatusid == 3 %}
+                            <button class="bbb" id="book{{ book.id }}" data-userid="{{ book.userid }}" data-bookstatusid="{{ book.bookstatusid }}" disabled>Выдана</button>
+                        {% endif %}
+                    {% elif authType.userTypeId == 3 %} {#библиотекарь#}
+                        {% if book.bookstatusid == 1 %}
+                            <button class="bbb" id="book{{ book.id }}" data-userid="{{ book.userid }}" data-bookstatusid="{{ book.bookstatusid }}" disabled>Доступна</button>
+                        {% elif book.bookstatusid == 2 %}
+                            <button class="bbb" id="book{{ book.id }}" data-userid="{{ book.userid }}" data-bookstatusid="{{ book.bookstatusid }}" onclick="giveBook({{ book.id }})">Выдать</button>
+                        {% elif book.bookstatusid == 3 %}
+                            <button class="bbb" id="book{{ book.id }}" data-userid="{{ book.userid }}" data-bookstatusid="{{ book.bookstatusid }}" onclick="takeBook({{ book.id }})">Вернуть</button>
+                        {% endif %}
+                    {% endif %}
+                    </div>
+                </div>
+            </div>
+        {% endif  %}
         {% endfor %}
-        </table>
+        </div>
+        <div class="Lol11">Нет в наличии</div>
+        <div class="PalkaPoEbalyDavalka"></div>
+        <div class="cheburek" id="cheburek">
+        {% for book in bookshelf %}
+        {% if book.bookstatusid == 3 or book.bookstatusid == 2 %}
+            <div class="pryamoygolnik">
+                <div class="bookmain"> {{ book.title }}
+                    <div class="ccc">
+                    {% if authType.userTypeId == 1 %} {#ученик#}
+                        {% if book.bookstatusid == 1 %}
+                            <button class="bbb" id="book{{ book.id }}" data-userid="{{ book.userid }}" data-bookstatusid="{{ book.bookstatusid }}" onclick="bookBooking({{ book.id }})">Забронировать</button>
+                        {% elif book.bookstatusid == 2 %}
+                            <button class="bbb" id="book{{ book.id }}" data-userid="{{ book.userid }}" data-bookstatusid="{{ book.bookstatusid }}" onclick="cancelBookBooking({{ book.id }})">Отменить</button>
+                        {% elif book.bookstatusid == 3 %}
+                            <button class="bbb" id="book{{ book.id }}" data-userid="{{ book.userid }}" data-bookstatusid="{{ book.bookstatusid }}" disabled>Выдана</button>
+                        {% endif %}
+                    {% elif authType.userTypeId == 3 %} {#библиотекарь#}
+                        {% if book.bookstatusid == 1 %}
+                            <button class="bbb" id="book{{ book.id }}" data-userid="{{ book.userid }}" data-bookstatusid="{{ book.bookstatusid }}" disabled>Доступна</button>
+                        {% elif book.bookstatusid == 2 %}
+                            <button class="bbb" id="book{{ book.id }}" data-userid="{{ book.userid }}" data-bookstatusid="{{ book.bookstatusid }}" onclick="giveBook({{ book.id }})">Выдать</button>
+                        {% elif book.bookstatusid == 3 %}
+                            <button class="bbb" id="book{{ book.id }}" data-userid="{{ book.userid }}" data-bookstatusid="{{ book.bookstatusid }}" onclick="takeBook({{ book.id }})">Вернуть</button>
+                        {% endif %}
+                    {% endif %}
+                    </div>
+                </div>
+            </div>
+        {% endif  %}
+        {% endfor %}
+        </div>
+    {% endif %}
+    {% if authType.userTypeId == 3 %}
+        <div class="Lol11">Забронированны</div>
+        <div class="PalkaPoEbalyDavalka"></div>
+        <div class="cheburek" id="cheburek">
+        {% for book in bookshelf %}
+        {% if book.bookstatusid == 2 %}
+            <div class="pryamoygolnik">
+                <div class="bookmain"> {{ book.title }}
+                    <div class="ccc">
+                    {% if authType.userTypeId == 1 %} {#ученик#}
+                        {% if book.bookstatusid == 1 %}
+                            <button class="bbb" id="book{{ book.id }}" data-userid="{{ book.userid }}" data-bookstatusid="{{ book.bookstatusid }}" onclick="bookBooking({{ book.id }})">Забронировать</button>
+                        {% elif book.bookstatusid == 2 %}
+                            <button class="bbb" id="book{{ book.id }}" data-userid="{{ book.userid }}" data-bookstatusid="{{ book.bookstatusid }}" onclick="cancelBookBooking({{ book.id }})">Отменить</button>
+                        {% elif book.bookstatusid == 3 %}
+                            <button class="bbb" id="book{{ book.id }}" data-userid="{{ book.userid }}" data-bookstatusid="{{ book.bookstatusid }}" disabled>Выдана</button>
+                        {% endif %}
+                    {% elif authType.userTypeId == 3 %} {#библиотекарь#}
+                        {% if book.bookstatusid == 1 %}
+                            <button class="bbb" id="book{{ book.id }}" data-userid="{{ book.userid }}" data-bookstatusid="{{ book.bookstatusid }}" disabled>Доступна</button>
+                        {% elif book.bookstatusid == 2 %}
+                            <button class="bbb" id="book{{ book.id }}" data-userid="{{ book.userid }}" data-bookstatusid="{{ book.bookstatusid }}" onclick="giveBook({{ book.id }})">Выдать</button>
+                        {% elif book.bookstatusid == 3 %}
+                            <button class="bbb" id="book{{ book.id }}" data-userid="{{ book.userid }}" data-bookstatusid="{{ book.bookstatusid }}" onclick="takeBook({{ book.id }})">Вернуть</button>
+                        {% endif %}
+                    {% endif %}
+                    </div>
+                </div>
+            </div>
+        {% endif  %}
+        {% endfor %}
+        </div>
+        <div class="Lol11">Выданы</div>
+        <div class="PalkaPoEbalyDavalka"></div>
+        <div class="cheburek" id="cheburek">
+        {% for book in bookshelf %}
+        {% if book.bookstatusid == 3 %}
+            <div class="pryamoygolnik">
+                <div class="bookmain"> {{ book.title }}
+                    <div class="ccc">
+                    {% if authType.userTypeId == 1 %} {#ученик#}
+                        {% if book.bookstatusid == 1 %}
+                            <button class="bbb" id="book{{ book.id }}" data-userid="{{ book.userid }}" data-bookstatusid="{{ book.bookstatusid }}" onclick="bookBooking({{ book.id }})">Забронировать</button>
+                        {% elif book.bookstatusid == 2 %}
+                            <button class="bbb" id="book{{ book.id }}" data-userid="{{ book.userid }}" data-bookstatusid="{{ book.bookstatusid }}" onclick="cancelBookBooking({{ book.id }})">Отменить</button>
+                        {% elif book.bookstatusid == 3 %}
+                            <button class="bbb" id="book{{ book.id }}" data-userid="{{ book.userid }}" data-bookstatusid="{{ book.bookstatusid }}" disabled>Выдана</button>
+                        {% endif %}
+                    {% elif authType.userTypeId == 3 %} {#библиотекарь#}
+                        {% if book.bookstatusid == 1 %}
+                            <button class="bbb" id="book{{ book.id }}" data-userid="{{ book.userid }}" data-bookstatusid="{{ book.bookstatusid }}" disabled>Доступна</button>
+                        {% elif book.bookstatusid == 2 %}
+                            <button class="bbb" id="book{{ book.id }}" data-userid="{{ book.userid }}" data-bookstatusid="{{ book.bookstatusid }}" onclick="giveBook({{ book.id }})">Выдать</button>
+                        {% elif book.bookstatusid == 3 %}
+                            <button class="bbb" id="book{{ book.id }}" data-userid="{{ book.userid }}" data-bookstatusid="{{ book.bookstatusid }}" onclick="takeBook({{ book.id }})">Вернуть</button>
+                        {% endif %}
+                    {% endif %}
+                    </div>
+                </div>
+            </div>
+        {% endif  %}
+        {% endfor %}
+        </div>
+        <div class="Lol11">В библиотеке</div>
+        <div class="PalkaPoEbalyDavalka"></div>
+        <div class="cheburek" id="cheburek">
+        {% for book in bookshelf %}
+        {% if book.bookstatusid == 1 %}
+            <div class="pryamoygolnik">
+                <div class="bookmain"> {{ book.title }}
+                    <div class="ccc">
+                    {% if authType.userTypeId == 1 %} {#ученик#}
+                        {% if book.bookstatusid == 1 %}
+                            <button class="bbb" id="book{{ book.id }}" data-userid="{{ book.userid }}" data-bookstatusid="{{ book.bookstatusid }}" onclick="bookBooking({{ book.id }})">Забронировать</button>
+                        {% elif book.bookstatusid == 2 %}
+                            <button class="bbb" id="book{{ book.id }}" data-userid="{{ book.userid }}" data-bookstatusid="{{ book.bookstatusid }}" onclick="cancelBookBooking({{ book.id }})">Отменить</button>
+                        {% elif book.bookstatusid == 3 %}
+                            <button class="bbb" id="book{{ book.id }}" data-userid="{{ book.userid }}" data-bookstatusid="{{ book.bookstatusid }}" disabled>Выдана</button>
+                        {% endif %}
+                    {% elif authType.userTypeId == 3 %} {#библиотекарь#}
+                        {% if book.bookstatusid == 1 %}
+                            <button class="bbb" id="book{{ book.id }}" data-userid="{{ book.userid }}" data-bookstatusid="{{ book.bookstatusid }}" disabled>Доступна</button>
+                        {% elif book.bookstatusid == 2 %}
+                            <button class="bbb" id="book{{ book.id }}" data-userid="{{ book.userid }}" data-bookstatusid="{{ book.bookstatusid }}" onclick="giveBook({{ book.id }})">Выдать</button>
+                        {% elif book.bookstatusid == 3 %}
+                            <button class="bbb" id="book{{ book.id }}" data-userid="{{ book.userid }}" data-bookstatusid="{{ book.bookstatusid }}" onclick="takeBook({{ book.id }})">Вернуть</button>
+                        {% endif %}
+                    {% endif %}
+                    </div>
+                </div>
+            </div>
+        {% endif  %}
+        {% endfor %}
+        </div>
+    {% endif %}
     </div>
+    <div class="test">
+   </div>
+   <div id="modal" class="modal">
+       <div class="modal-content">
+            <span class="close1">&times;</span>
+           <select id="difficultChoose">
+                <option value=0>Роман</option>
+                <option value=1>Комедия</option>
+                <option value=2>Трагедия</option>
+                <option value=3>Повесть</option>
+               <option value=4>Сказка</option>
+               <option value=5>Баллада</option>
+               <option value=6>Поэма</option>
+               <option value=7>Драма</option>
+            </select>
+       </div>
+   </div>
+
+<script>
+document.addEventListener('click', function(event) {
+    if (event.target.tagName === 'DIV') {
+        let text1 = event.target.innerText;
+
+        // Проверяем, кликнули ли на элемент с классом "bookmain"
+        if (event.target.classList.contains('bookmain')) {
+            let zzz = event.target.querySelector('.bbb');
+            zzz.style.display = 'flex';
+            let qqq = document.querySelector('.invis1');
+            qqq.style.display = 'none';
+            let nn = document.querySelector('.noname');
+            nn.classList.add('blur');
+
+            let originalPointerEvents = getComputedStyle(nn).pointerEvents;
+            nn.style.pointerEvents = 'none';
+
+            // Создание дива с кнопкой
+            let a = document.createElement('div');
+            a.classList.add('Bookmain52');
+
+            let b = document.createElement('div');
+            b.classList.add('Bookmainb');
+            let c = document.createElement('div');
+            c.classList.add('Bookmainc');
+            let d = document.createElement('div');
+            d.classList.add('Bookmaind');
+            let e = document.createElement('div');
+            e.classList.add('Bookmaine');
+            let f = document.createElement('div');
+            f.classList.add('Bookmainf');
+            let m = document.createElement('div');
+            m.classList.add('Bookmainm');
+            let g = document.createElement('div');
+            g.classList.add('Bookmaing');
+            let h = document.createElement('div');
+            h.classList.add('Bookmainh');
+            let k = document.createElement('div');
+            k.classList.add('BDSMpalka');
+            let l = document.createElement('div');
+            l.classList.add('Bookmainl');
+            let btn52 = document.createElement('button');
+            btn52.classList.add('close');
+
+            document.body.appendChild(a);
+            a.appendChild(b);
+            a.appendChild(c);
+            a.appendChild(k);
+            a.appendChild(d);
+            b.appendChild(btn52);
+            c.appendChild(e);
+            c.appendChild(f);
+            d.appendChild(zzz)
+            f.appendChild(g);
+            f.appendChild(h);
+            f.appendChild(m);
+
+            // Подстановка названия книги
+            {% for book in bookshelf %}
+            if (text1 === '{{ book.title }}') {
+                g.innerText = '{{ book.author }}';
+                h.innerText = '{{ book.info }}';
+                m.innerText = 'Кол-во книг: {{ book.count }}';  // Убедитесь, что поле count существует
+            }
+            {% endfor %}
+
+            btn52.addEventListener('click', function () {
+                a.remove();
+                nn.classList.remove('blur');
+                nn.style.pointerEvents = originalPointerEvents;
+                qqq.style.display = 'flex';
+                zzz.style.display = 'none';
+            });
+        }
+    }
+});
+</script>
 {% endblock Kvass %}
+</div>
