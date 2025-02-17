@@ -1,11 +1,16 @@
 let initEvents = function() {
-    menuitem_list = document.getElementsByClassName('menuitem');
-    for (const el of menuitem_list) {
-        el.addEventListener("click", (e) => {
-           for (const el of document.getElementsByClassName('main'))
-               el.style.display = el.dataset.id === e.target.dataset.id ? "flex" : "none";
-            for (const el of document.getElementsByClassName('menuitem'))
-                el.style.backgroundColor = "white"
+    let menuitem_list = document.getElementsByClassName('menuitem');
+    for (const menuItem of menuitem_list) {
+        menuItem.addEventListener("click", (e) => {
+            // Дисплей главных элементов
+            for (const mainItem of document.getElementsByClassName('main')) {
+                mainItem.style.display = mainItem.dataset.id === e.target.dataset.id ? "flex" : "none";
+            }
+
+            // Сброс фона элементов меню
+            for (const item of menuitem_list) {
+                item.style.backgroundColor = "white";
+            }
             e.target.style.backgroundColor = "rgb(143, 154, 163)";
         });
     }
@@ -21,11 +26,11 @@ function getKlass() {
                 $('#tbodyStud').append("<tr><td>" + res[i].name + "</td><td>" + res[i].last_name + "</td><td>" +
                     res[i].books_count + "</td><td></td></tr>");
                 if (res[i].books_count > 0) {
-                    $('#tbodyStud td:last').append("<table class='innerTable' border-color='black' border='1'>" +
-                        "<tbody></tbody></table>")
+                    let $lastRow = $('#tbodyStud tr:last td:last');
+                    $lastRow.append("<table class='innerTable' border='1'><tbody></tbody></table>");
                     for (let j = 0; j < res[i].books.length; j++) {
                         $('.innerTable:last tbody').append("<tr><td>" + res[i].books[j].author + "</td><td>" +
-                            res[i].books[j].title + "</td></tr>")
+                            res[i].books[j].title + "</td></tr>");
                     }
                 }
             }
@@ -38,17 +43,20 @@ function getMyBooks() {
         url: '/getMyBooks',
         method: 'get',
         success: function (res) {
+            $('#tableMyBooks tr').remove(); // Очистка перед добавлением
             for (let i = 0; i < res.length; i++) {
                 $('#tableMyBooks').append('<tr>\n' +
-                    '                        <td>' + res[i].title + '</td>\n' +
-                    '                        <td>' + res[i].author + '</td>\n' +
-                    '                        <td>' + res[i].info + '</td>\n' +
-                    '                    </tr>');
+                    '    <td>' + res[i].title + '</td>\n' +
+                    '    <td>' + res[i].author + '</td>\n' +
+                    '    <td>' + res[i].info + '</td>\n' +
+                    '</tr>');
             }
         }
     });
 }
 
+// Инициализация событий
+initEvents();
 function bookBooking(book_id) {
     $.ajax({
         url: '/bb',
@@ -57,10 +65,11 @@ function bookBooking(book_id) {
         contentType: 'application/json;charset=UTF-8',
         method: 'post',
         success: function (res) {
-            $('#book'+book_id)[0].innerText = "Отменить";
-            $('#book'+book_id)[0].removeAttribute('onClick');
-            $('#book'+book_id).off('click');
-            $('#book'+book_id).on('click', function() {cancelBookBooking(book_id)});
+            let bid = $('#book'+book_id);
+            bid[0].innerText = "Отменить";
+            bid[0].removeAttribute('onClick');
+            bid.off('click');
+            bid.on('click', function() {cancelBookBooking(book_id)});
         },
         error: function (res) {
             alert("Книга недоступна")
@@ -76,10 +85,11 @@ function cancelBookBooking(book_id) {
         contentType: 'application/json;charset=UTF-8',
         method: 'post',
         success: function (res) {
-            $('#book'+book_id)[0].innerText = "Забронировать";
-            $('#book'+book_id)[0].removeAttribute('onClick');
-            $('#book'+book_id).off('click');
-            $('#book'+book_id).on('click', function() {bookBooking(book_id)});
+            let bid = $('#book'+book_id);
+            bid[0].innerText = "Забронировать";
+            bid[0].removeAttribute('onClick');
+            bid.off('click');
+            bid.on('click', function() {bookBooking(book_id)});
         }
     });
 }
@@ -93,10 +103,11 @@ function giveBook(book_id) {
         method: 'post',
         success: function (res) {
             // $('#book'+book_id).attr("disabled", true);
-            $('#book'+book_id)[0].innerText = "Вернуть";
-            $('#book'+book_id)[0].removeAttribute('onClick');
-            $('#book'+book_id).off('click');
-            $('#book'+book_id).on('click', function() {takeBook(book_id)});
+            let bid = $('#book'+book_id);
+            bid[0].innerText = "Вернуть";
+            bid[0].removeAttribute('onClick');
+            bid.off('click');
+            bid.on('click', function() {takeBook(book_id)});
         }
     });
 }
@@ -109,9 +120,10 @@ function takeBook(book_id) {
         contentType: 'application/json;charset=UTF-8',
         method: 'post',
         success: function (res) {
-            $('#book'+book_id).attr("disabled", true);
-            $('#book'+book_id)[0].innerText = "Доступна";
-            $('#book'+book_id)[0].removeAttribute('onClick');
+            let bid = $('#book'+book_id);
+            bid.attr("disabled", true);
+            bid[0].innerText = "Доступна";
+            bid[0].removeAttribute('onClick');
         }
     });
 }
@@ -140,6 +152,28 @@ function disableBooked() {
             }
         }
     });
+}
+
+
+    let modal = document.getElementById("modal");
+    let button = document.getElementById("menu");
+    let closeBtn = document.getElementsByClassName("close1")[0];
+
+    button.onclick = function () {
+        modal.style.animation = "slideIn 0.5s forwards";
+        modal.style.display = "block";
+
+
+    }
+
+
+    closeBtn.onclick = function() {
+     modal.style.animation = "slideOut 0.5s forwards";
+
+      setTimeout(function() {
+        modal.style.animation = "";
+        modal.style.display = "none";
+     }, 500);
 }
 
 

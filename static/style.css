@@ -29,6 +29,26 @@ tbody {
     display: none;
 }
 
+.palkakaka {
+    width: 20%;
+    margin-left: 0%;
+    height: 2px;
+    margin-bottom: 10%;
+    background-color: black;
+}
+.subsubmain {
+    width: 100%;
+    height: 600px;
+    margin: 5%;
+    display: flex;
+    flex-direction: column;
+    overflow: scroll;
+}
+.tablelele {
+    font-size: 25px;
+    display: flex;
+    flex-direction: column;
+}
 #main0 {
     height: 700px;
     margin: auto;

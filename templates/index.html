@@ -101,8 +101,19 @@
                 </table>
             </div>
             <div class="main" data-id=4 id="main4">
-                <div class="test">Новости: вчера какого-то ученика из нано школы збил динозаврБ убегающий от зама
-                    директора
+                <div class="subsubmain">
+                {% for New in News %}
+                    <div class="tablelele">
+                        Дата:  {{ New.data }}
+                    </div>
+                    <div class="tablelele">
+                        {{ New.text }}
+                    </div>
+                    <div class="tablelele">
+                        Ссылки: {{ New.https }}
+                    </div>
+                    <div class="palkakaka"></div>
+                {% endfor %}
                 </div>
             </div>
             <div class="main" data-id=5 id="main5">

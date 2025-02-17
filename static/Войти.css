@@ -29,19 +29,26 @@ button {
 }
 
 .Kvass1{
-    width: 38%;
+    width: 730px;
     height: 600px;
-    margin: 0 auto;
+    margin-top: 2%;
     display: flex;
     flex-direction: column;
     border-radius: 15px;
     background-size: cover;
     background-image: url("DayBackround.jpg");
+    -webkit-box-shadow: 80px 41px 35px 9px rgba(0, 0, 0, 0.45);
+    -moz-box-shadow: 80px 41px 35px 9px rgba(0, 0, 0, 0.45);
+    box-shadow: 80px 41px 35px 9px rgba(0, 0, 0, 0.45);
 }
 
 .Mewing{
-    margin: 10px;
+    margin-left: 38%;
+    margin-top: 10px;
+    width: 170px;
+    height: 170px;
     background-size: cover;
+    border-radius: 90px;
 }
 
 
@@ -49,11 +56,14 @@ button {
 .Name{
     margin: 10px;
     font-family: Arial, sans-serif;
-    font-weight: 600;
+    font-weight: 700;
     font-family: "Arial Narrow";
-    color: #0c2239;
-    font-size: 25px;
-    height: 70px;
+    font-size: 29px;
+    height: 7%;
+    border-radius: 90px;
+    align-items: center;
+    width: 70%;
+    margin-left: 15%;
 }
 
 .Войти{
@@ -74,22 +84,23 @@ button {
 }
 
 input[type = "text"]{
-    margin-top: 10px;
-    margin-left: 50px;
-    margin-right: 50px;
     border: 2px solid rgb(204, 204, 204);
     border-radius: 4px;
-    background-color: rgba(58,215,131,0.51);
+    margin-top: 3%;
+    height: 14%;
+    width: 80%;
+    margin-left: 10%;
 
 }
 
 input[type = "password"]{
-    margin-top: 10px;
-    margin-left: 50px;
-    margin-right: 50px;
     border: 2px solid rgb(204, 204, 204);
     border-radius: 4px;
-    background-color: rgba(58,215,131,0.51);
+    margin-top: 3%;
+    height: 14%;
+    width: 80%;
+    margin-left: 10%;
+
 }
 
 .OtherDisplay{
@@ -98,42 +109,55 @@ input[type = "password"]{
     flex-direction: row;
     justify-content: flex-end;
     background-color: rgba(0,0,0,0);
+    margin-top: 2%;
 }
 
 .Text2{
-    margin: 10px;
     font-family: Arial, sans-serif;
-    background-color: rgba(0,0,0,0);
-    color: white;
+    background-color: rgba(256,256,256,20%);
+    color: #0c2239;
+    margin-right: auto;
+    margin-left: 10%;
+    width: 20%;
+    font-weight: 600;
+    font-size: 16px;
+    border-radius:  30px;
+    color: #0c2239;
 }
-
+.Palka69{
+    height: 7px;
+    width: 70%;
+    background-color: rgb(190, 190, 190);
+    margin-top: 9%;
+    margin-left: 15%;
+}
 input[type = "checkbox"]{
-    margin: 10px;
+    margin-right: 66%;
 }
 
 .vvod {
-    background-color: rgba(37,92,202,0.5);
-    border-width: 4px;
-    border-color: rgba(7,59,126,0.8);
-}
-.Enter, .Register {
-    width: 95%;
+    border: 2px solid rgb(204, 204, 204);
+    border-radius: 4px;
+    margin-top: 3%;
+    height: 14%;
+    width: 80%;
+    margin-left: 10%;
 }
 
 .backimg{
     filter: blur(5px);
 }
 .Enter{
-    margin: 10px;
     font-family: Arial, sans-serif;
-    background-color: rgba(100,171,233,0.5);
-    border-radius: 4px;
-    width: 80%;
-    height: 40px;
+    border-radius: 5px;
+    width: 50%;
+    height: 50px;
     border-color: rgba(13,144,144,0.9);
     color: #0c2239;
     font-size: 30px;
     font-weight: 600;
+    margin-top: 4%;
+    margin-left: 0%;
 }
 
 .Enter:hover{
@@ -144,12 +168,31 @@ input[type = "checkbox"]{
 .Register{
     margin: 10px;
     font-family: Arial, sans-serif;
-    background-color: rgba(19,93,108,0.31);
-    border-radius: 4px;
-    width: 80%;
+    background-color: rgba(256, 256, 256);
+    width: 20%;
+    color: #0c2239;
+    font-size: 12px;
+    font-weight: 700;
+    height:  60%;
 }
 
 .Register:hover{
     transition: 0.39s;
     transform: scale(1.03, 1.03);
+}
+
+.change{
+    background-color: rgba(0,0,0,0);
+    color: #b9c1e9;
+    font-size: 18px;
+    text-decoration: underline;
+    font-weight: 600;
+    font-family: "Arial Narrow";
+    height: 8%;
+    width: 50%;
+    margin: auto;
+}
+
+.chekker {
+    margin-right: 50%;
 }

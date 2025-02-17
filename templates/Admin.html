@@ -1,0 +1,189 @@
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-image: linear-gradient(to right, #f0f0f0, #cfcfcf);
+        color: #333;
+        margin: 20px;
+    }
+    h1 { color: #333; }
+    table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
+    th, td { padding: 10px; text-align: left; border: 1px solid #ccc; }
+    th { background-color: #eee; }
+    tr:hover { background-color: #f9f9f9; }
+    form { display: inline; }
+    input, button { margin: 5px; padding: 10px; border: 1px solid #ccc; }
+    input[type="text"], input[type="number"], textarea { width: calc(100% - 22px); background-color: #f9f9f9; color: #333; }
+    button { cursor: pointer; background-color: #888; color: #fff; }
+    button:hover { background-color: #555; }
+    .Main000 { height: 20%; width: 100%; background-color: transparent; display: flex; flex-direction: row; }
+    .exit { width: 70px; height: 70px; margin-left: 3%; background-image: url("static/Back.png"); background-size: cover; background-color: transparent; }
+    .zagolovok { font-size: 60px; font-family: "Comic Sans MS"; margin-left: 20%; color: #333; }
+    .Main0000 { display: flex; flex-direction: row; height: 20%; width: 100%; font-size: 100%; font-weight: 700; text-align: center; text-indent: 0%; }
+    .main222 { display: none; }
+    .active { display: grid; }
+    .active2 { background-color: #504d4f; }
+    .button { cursor: pointer; padding: 10px; border: 1px solid #333; margin-left: 2%; width: 30%; height: 16%; background-color: #ddd; color: #333; }
+    .button:hover { background-color: #bbb; }
+</style>
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Панель Администратора</title>
+
+</head>
+<body>
+    <div class="Main000">
+        <a class="exit" href="/Kvass52">
+        </a>
+    <div class="zagolovok">Панель Администратора</div>
+    </div>
+    <div class="PalkaIzMinecrafta"></div>
+    <div class="Main0000">
+    <div class="button" id="id1" class="active2"> Информация о библиотеке</div>
+    <div class="button" id="id2"> Информация о пользователях</div>
+    <div class="button" id="id3"> Информация о книгах</div>
+    </div>
+    <div class="main222" id="main001" class="active">
+        <h1>Информационный контент</h1>
+        <div class="MainPalka"></div>
+        <div class="Shablon">
+            <div class="text525252"> Статус библиотеки</div>
+        </div>
+            <h1>Добавить новость</h1>
+    <form method="post">
+        <input type="text" name="data" placeholder="Дата" required>
+        <input type="text" name="text" placeholder="Текст" required>
+        <input type='text' name="https" placeholder="Ссылка" required>
+        <button type="submit" name="add_new">Добавить</button>
+    </form>
+            <h1>Новости</h1>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Data</th>
+            <th>Text</th>
+            <th>https</th>
+            <th>Удалить</th>
+        </tr>
+        {% for new in news %}
+            <tr>
+                <td>{{ new.id }}</td>
+                <td>{{ new.data }}</td>
+                <td>{{ new.text }}</td>
+                <td>{{ new.https }}</td>
+                <td> <form action="{{ url_for('delete_new', new_id=new.id) }}" method="post">
+                        <button type="submit">Удалить</button>
+                    </form>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+    </div>
+    <div class="main222" id="main002">
+    <h1>Список пользователей</h1>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Nickname</th>
+            <th>Name</th>
+            <th>LastName</th>
+            <th>Class</th>
+            <th>User Type</th>
+            <th>Статус</th>
+            <th>Удалить</th>
+        </tr>
+        {% for user in users %}
+            <tr>
+                <td>{{ user.id }} </td>
+                <td>{{ user.nickname }}  {{ '⭐' if user.usertype_id == 3 }}</td>
+                <td>{{ user.name }}</td>
+                <td>{{ user.last_name }}</td>
+                <td>{{ '1-А' if user.usergrade_id == 1 else '10-Т' if user.usergrade_id == 2}}</td>
+                <td>{{ 'Ученик' if user.usertype_id == 1 else 'Администратор' }}</td>
+                <td>
+                    <form action="{{ url_for('change_user_type', user_id=user.id) }}" method="post">
+                        <button type="submit">{{ 'Выдать права админа' if user.usertype_id == 1 else 'Убрать права админа' }}</button>
+                    </form>
+                </td>
+                <td>
+                    <form action="{{ url_for('delete_user', user_id=user.id) }}" method="post">
+                        <button type="submit">Удалить</button>
+                    </form>
+            </tr>
+        {% endfor %}
+    </table>
+    </div>
+    <div class="main222" id="main003">
+    <h1>Добавить книгу</h1>
+    <form method="post">
+        <input type="text" name="title" placeholder="Название" required>
+        <input type="text" name="author" placeholder="Автор" required>
+        <input type='text' name="info" placeholder="Информация" required>
+        <button type="submit" name="add_book">Добавить</button>
+    </form>
+
+    <h1>Список книг</h1>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Info</th>
+            <th>Status</th>
+            <th>Действия</th>
+        </tr>
+        {% for book in books %}
+            <tr>
+                <td>{{ book.id }}</td>
+                <td>{{ book.title }}</td>
+                <td>{{ book.author }}</td>
+                <td>{{ book.info }}</td>
+                <td>{{ 'Доступна' if book.bookstatusid == 1 else 'Забронирована' if book.bookstatusid == 2 else 'Выдана' if book.bookstatusid == 3 }}</td>
+                <td>
+                    <form action="{{ url_for('delete_book', book_id=book.id) }}" method="post">
+                        <button type="submit">Удалить</button>
+                    </form>
+                    <form action="{{ url_for('change_status', book_id=book.id, new_status=1) }}" method="post">
+<button type="submit">Отметить как доступную</button>
+                    </form>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+    </div>
+</body>
+</html>
+
+    <script>
+        let currentMain = null;
+        let currentButton = null;
+
+        function toggleMain(id) {
+            const mainDiv = document.getElementById(`main00${id}`);
+            const button = document.getElementById(`id${id}`);
+
+            if (currentMain) {
+                currentMain.classList.remove('active');
+                currentButton.classList.remove('active2');
+            }
+
+            if (currentMain === mainDiv) {
+                currentMain = null;
+                currentButton = null;
+            } else {
+                mainDiv.classList.add('active');
+                currentMain = mainDiv;
+                currentButton = button;
+                button.classList.add('active2');
+            }
+        }
+
+        document.getElementById('id1').onclick = () => toggleMain('1');
+        document.getElementById('id2').onclick = () => toggleMain('2');
+        document.getElementById('id3').onclick = () => toggleMain('3');
+
+        // Изначально активируем id1 и main001
+        toggleMain('1');
+    </script>
