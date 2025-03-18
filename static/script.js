@@ -1,12 +1,19 @@
 let initEvents = function() {
     let menuitem_list = document.getElementsByClassName('menuitem');
-    for (const el of menuitem_list) {
-        el.addEventListener("click", (e) => {
-           for (const el of document.getElementsByClassName('main'))
-               el.style.display = el.dataset.id === e.target.dataset.id ? "flex" : "none";
-            for (const el of document.getElementsByClassName('menuitem'))
-                el.style.backgroundColor = "white"
-            el.target.style.backgroundColor = "rgb(143, 154, 163)";
+    for (const menuItem of menuitem_list) {
+        menuItem.addEventListener("click", (e) => {
+            // Дисплей главных элементов
+            for (const mainItem of document.getElementsByClassName('main')) {
+                mainItem.style.display = mainItem.dataset.id === e.target.dataset.id ? "flex" : "none";
+            }
+
+            // Сброс фона элементов меню
+            for (const item of menuitem_list) {
+                item.style.backgroundColor = "rgb(171,171,171)";
+            }
+            e.target.style.backgroundColor = "rgb(131, 134, 133)";
+            let z = document.querySelector('#z');
+            z.style.backgroundColor = "rgba(0,0,0,0)"
         });
     }
 }
@@ -21,11 +28,11 @@ function getKlass() {
                 $('#tbodyStud').append("<tr><td>" + res[i].name + "</td><td>" + res[i].last_name + "</td><td>" +
                     res[i].books_count + "</td><td></td></tr>");
                 if (res[i].books_count > 0) {
-                    $('#tbodyStud td:last').append("<table class='innerTable' border-color='black' border='1'>" +
-                        "<tbody></tbody></table>")
+                    let $lastRow = $('#tbodyStud tr:last td:last');
+                    $lastRow.append("<table class='innerTable' border='1'><tbody></tbody></table>");
                     for (let j = 0; j < res[i].books.length; j++) {
                         $('.innerTable:last tbody').append("<tr><td>" + res[i].books[j].author + "</td><td>" +
-                            res[i].books[j].title + "</td></tr>")
+                            res[i].books[j].title + "</td></tr>");
                     }
                 }
             }
@@ -38,17 +45,20 @@ function getMyBooks() {
         url: '/getMyBooks',
         method: 'get',
         success: function (res) {
+            $('#tableMyBooks tr').remove(); // Очистка перед добавлением
             for (let i = 0; i < res.length; i++) {
                 $('#tableMyBooks').append('<tr>\n' +
-                    '                        <td>' + res[i].title + '</td>\n' +
-                    '                        <td>' + res[i].author + '</td>\n' +
-                    '                        <td>' + res[i].info + '</td>\n' +
-                    '                    </tr>');
+                    '    <td>' + res[i].title + '</td>\n' +
+                    '    <td>' + res[i].author + '</td>\n' +
+                    '    <td>' + res[i].info + '</td>\n' +
+                    '</tr>');
             }
         }
     });
 }
 
+// Инициализация событий
+initEvents();
 function bookBooking(book_id) {
     $.ajax({
         url: '/bb',

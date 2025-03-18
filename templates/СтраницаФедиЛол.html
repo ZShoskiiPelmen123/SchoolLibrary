@@ -22,13 +22,13 @@
                     <div class="MainName2"> LIBRARY </div>
                 </div>
                 <div class="search">
-                    <div class="bookCount">
-                       Количество книг: {{ num }}
-                    </div>
                     <form class="lenin" method="get" action="/searchBook">
                         <input type="text" placeholder="Поиск книги" class="POISKTEXT" name="searchText">
                     </form>
                 </div>
+                {% if authType.userTypeId == 3 %}
+                    <a href='/admin_panel' class="adminpanel"> </a>
+                {% endif %}
                 <div class="inviz52">
                     <div class="Phone">
                         <img class="phoneimg" src="static/Phone.png" >
@@ -286,12 +286,12 @@ document.addEventListener('click', function(event) {
             f.appendChild(h);
             f.appendChild(m);
 
-            // Подстановка названия книги
+            // Подстановка названия товара
             {% for book in bookshelf %}
-            if (text1 === '{{ book.title }}') {
+            if (text1 == '{{ book.title }}') {
                 g.innerText = '{{ book.author }}';
                 h.innerText = '{{ book.info }}';
-                m.innerText = 'Кол-во книг: {{ book.count }}';  // Убедитесь, что поле count существует
+                m.innerText = 'Кол-во книг: {{ book.amount }}';  // Убедитесь, что поле count существует
             }
             {% endfor %}
 
