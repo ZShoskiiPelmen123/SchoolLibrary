@@ -24,6 +24,7 @@
     .active2 { background-color: #504d4f; }
     .button { cursor: pointer; padding: 10px; border: 1px solid #333; margin-left: 2%; width: 30%; height: 16%; background-color: #ddd; color: #333; }
     .button:hover { background-color: #bbb; }
+    .finalclass { background-color: #177199; color: white; font-size: 25px; font-weight: 700; height: 40px; width: 40px; border-radius: 20px; text-align: center; align-items: center}
 </style>
 
 <!DOCTYPE html>
@@ -37,7 +38,7 @@
     <div class="Main000">
         <a class="exit" href="/Kvass52">
         </a>
-    <div class="zagolovok">Панель Администратора</div>
+    <div class="zagolovok">Личный кабинет</div>
     </div>
     <div class="PalkaIzMinecrafta"></div>
     <div class="Main0000">
@@ -121,6 +122,7 @@
         <input type="text" name="title" placeholder="Название" required>
         <input type="text" name="author" placeholder="Автор" required>
         <input type='text' name="info" placeholder="Информация" required>
+        <input type='text' name="amount" placeholder="Количество" required>
         <button type="submit" name="add_book">Добавить</button>
     </form>
 
@@ -132,6 +134,7 @@
             <th>Author</th>
             <th>Info</th>
             <th>Status</th>
+            <th>Amount</th>
             <th>Действия</th>
         </tr>
         {% for book in books %}
@@ -141,6 +144,15 @@
                 <td>{{ book.author }}</td>
                 <td>{{ book.info }}</td>
                 <td>{{ 'Доступна' if book.bookstatusid == 1 else 'Забронирована' if book.bookstatusid == 2 else 'Выдана' if book.bookstatusid == 3 }}</td>
+                <td>
+                    <form action="{{ url_for('minus', book_id=book.id) }}" method="post">
+                        <button type="submit" class="finalclass">-</button>
+                    </form>
+                    {{ book.amount }}
+                    <form action="{{ url_for('plus', book_id=book.id) }}" method="post">
+                        <button type="submit" class="finalclass">+</button>
+                    </form>
+                </td>
                 <td>
                     <form action="{{ url_for('delete_book', book_id=book.id) }}" method="post">
                         <button type="submit">Удалить</button>

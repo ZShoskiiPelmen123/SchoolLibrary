@@ -7,15 +7,15 @@
 {% block Kvass %}
     {% block header %}
     {% endblock %}
+    <body>
     <div id="main0">
         <div class="submain0">
             <div class="gitler1488">
-                <div class="space">
+                <div class="Main000">
                     <a class="exit" href="/Kvass52">
-                        <button class="exit">Назад</button>
                     </a>
+                    <div class="zagolovok">Личный Кабинет</div>
                 </div>
-                <div class="lichni_kab">ЛИЧНЫЙ КАБИНЕТ</div>
                 <div class="inform">Дата регистрации</div>
                 <div class="inform">Взято книг из библиотеки: {{ authType.gbcount }}</div>
                 <div class="inform">Забронировано книг: {{ authType.bbcount }}</div>
@@ -26,7 +26,9 @@
                         <div class="menuitem" data-id=1 id="a" onclick="getKlass()">Класс</div>
                     {% endif %}
                     <div class="menuitem" data-id=2 id="b">Личные данные</div>
-                    <div class="menuitem" data-id=3 id="c" onclick="getMyBooks()">Мои книги</div>
+                    {% if authType.userTypeId != 2 %}
+                        <div class="menuitem" data-id=3 id="c" onclick="getMyBooks()">Мои книги</div>
+                    {% endif %}
                     <div class="menuitem" data-id=4 id="d">Новости</div>
                     <div class="menuitem" data-id=5 id="e">О нас</div>
                     <div class="menuitem" data-id=6 id="f">Настройки</div>
@@ -71,17 +73,17 @@
                         </div>
                     </div>
                     <div class="maindannie">
-                        <div class="row1"> Фамилия: {{ authType.last_name }}
-                            <div class="Familia"></div>
+                        <div class="row1"> Фамилия:
+                            <div class="Familia">{{ authType.last_name }}</div>
                         </div>
-                        <div class="row1"> Имя: {{ authType.first_name }}
-                            <div class="name"></div>
+                        <div class="row1"> Имя:
+                            <div class="name">{{ authType.first_name }}</div>
                         </div>
                         <div class="row1"> Отчество:
                             <div class="otchestvo"></div>
                         </div>
-                        <div class="row1"> Класс: {{ authType.grade }}
-                            <div class="classnomber"></div>
+                        <div class="row1"> Класс:
+                            <div class="classnomber">{{ authType.grade }}</div>
                             <div class="classbykva"></div>
                         </div>
                         <div class="row1">СНИЛС:
@@ -126,4 +128,5 @@
             <div class="main" data-id=7 id="main7"></div>
         </div>
     </div>
+    </body>
 {% endblock Kvass %}

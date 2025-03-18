@@ -8,13 +8,13 @@
             <div class="Name1" id="Name1">Регистрация</div>
             <select name="userTypeId">
                     {% for book in KvassMnogo %}
-                        <option value={{ book.name }}>{{ book.name }}</option>
+                        <option value={{ book.id }}>{{ book.name }}</option>
                     {% endfor %}
             </select>
             <input type="text" required name="nickname" placeholder="Имя пользователя">
-            <select name="userGrade">
+            <select name="userGradeId">
                     {% for book in KvassInfinity %}
-                        <option value={{ book.name }}>{{ book.name }}</option>
+                        <option value={{ book.id }}>{{ book.name }}</option>
                     {% endfor %}
             </select>
             <input type="text" required name="name" placeholder="Имя">
