@@ -1,5 +1,5 @@
 from flask import Flask
-from models import db, UserGrade, UserType, Book, BookStatus#, News
+from models import db, UserGrade, UserType, Book, BookStatus, News
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///library.db'
@@ -8,7 +8,7 @@ db.init_app(app)
 
 if __name__ == "__main__":
     with app.app_context():
-        db.drop_all()
+        #db.drop_all()
         db.create_all()
 
         usertype1 = UserType(name="Ученик")
@@ -21,12 +21,12 @@ if __name__ == "__main__":
 
         db.session.add_all([usergrade1, usergrade1488])
 
-        book1 = Book(title="Я чувствую", author="Тимечко Глеб", info="Ох, как же он чувствует, год издания: В твоих "
+        book1 = Book(amount=123, title="Я чувствую", author="Тимечко Глеб", info="Ох, как же он чувствует, год издания: В твоих "
                                                                      "мечтах")
-        book2 = Book(title="История этого проекта", author="Тимечко Глеб", info="Это история про Глеба, который "
+        book2 = Book(amount=345, title="История этого проекта", author="Тимечко Глеб", info="Это история про Глеба, который "
                                                                                 "страдал, пока писал проект, и про Федю "
                                                                                 "который дизайнер и ходит на плавание и в конце каждого предложения говорит: Лол; Лол.")
-        book3 = Book(title="Преступление и наказание", author="Фёдор Достоевский", info="Хз чё там, пока не читал, "
+        book3 = Book(amount=456, title="Преступление и наказание", author="Фёдор Достоевский", info="Хз чё там, пока не читал, "
                                                                                         "зато вам интересно будет")
 
         db.session.add_all([book1, book2, book3])

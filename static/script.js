@@ -9,9 +9,11 @@ let initEvents = function() {
 
             // Сброс фона элементов меню
             for (const item of menuitem_list) {
-                item.style.backgroundColor = "white";
+                item.style.backgroundColor = "rgb(171,171,171)";
             }
-            e.target.style.backgroundColor = "rgb(143, 154, 163)";
+            e.target.style.backgroundColor = "rgb(131, 134, 133)";
+            let z = document.querySelector('#z');
+            z.style.backgroundColor = "rgba(0,0,0,0)"
         });
     }
 }

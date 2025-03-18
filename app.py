@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, jsonify, redirect, url_for
-from models import db, Book, User, UserType, UserGrade, BookStatus, News
+from models import db, Book, User, UserType, UserGrade, BookStatus, News, UserBook
 from werkzeug.security import generate_password_hash, check_password_hash
 from functools import wraps
 from sqlalchemy import and_, or_
@@ -77,8 +77,8 @@ def confirming1():
     global authType
     if request.method == 'POST':
         if User.query.filter_by(nickname=request.form['nickname']).first() is None:
-            usertype = UserType.query.filter_by(id=request.form['userType']).first()
-            usergrade = UserGrade.query.filter_by(id=request.form['userGrade']).first()
+            usertype = UserType.query.filter_by(id=request.form['userTypeId']).first()
+            usergrade = UserGrade.query.filter_by(id=request.form['userGradeId']).first()
             hashed_password = generate_password_hash(request.form['password'])
             user = User(nickname=request.form['nickname'], name=request.form['name'],
                         last_name=request.form['last_name'], password=hashed_password, usertype_id=usertype.id,
@@ -138,10 +138,18 @@ def bb():
     book_id = request.json['book_id']
     if request.method == "POST":
         book = Book.query.filter_by(id=book_id).first()
+        userBook = UserBook.query.filter_by(bookid=book_id, userid=authType['userId']).first()
         if book is None:
             return jsonify(error='Книга не найдена'), 400
         elif book.userid is not None:
             return jsonify(error='Книга уже взята'), 400
+        elif book.amount <= 0:
+            return jsonify(error='Книги закончились'), 400
+        elif userBook is not None:
+            return jsonify(error='Нельзя взять два экземпляра одной книги'), 400
+        userBook = UserBook(userid=authType['userId'], bookid=book_id, bookstatus=2)
+        db.session.add(userBook)
+        db.session.commit()
         book.userid = authType['userId']
         book.bookstatusid = 2
         db.session.commit()
@@ -195,6 +203,7 @@ def tb():
                 return jsonify(error='Книга не найдена'), 400
             book.userid = None
             book.bookstatusid = 1
+            book.amount += 1
             db.session.commit()
         return jsonify(success=True)
     else:
@@ -259,7 +268,8 @@ def admin_panel():
             title = request.form['title']
             author = request.form['author']
             info = request.form['info']
-            book = Book(title=title, author=author, info=info, bookstatusid=1)
+            amount = request.form['amount']
+            book = Book(title=title, author=author, info=info, bookstatusid=1, amount=amount)
             db.session.add(book)
             db.session.commit()
             return redirect(url_for('admin_panel'))
@@ -291,6 +301,24 @@ def delete_book(book_id):
     book = Book.query.get(book_id)
     if book:
         db.session.delete(book)
+        db.session.commit()
+    return redirect(url_for('admin_panel'))
+
+
+@app.route('/admin_panel/plus/<int:book_id>', methods=['POST'])
+def plus(book_id):
+    book = Book.query.get(book_id)
+    if book:
+        book.amount += 1
+        db.session.commit()
+    return redirect(url_for('admin_panel'))
+
+
+@app.route('/admin_panel/minus/<int:book_id>', methods=['POST'])
+def minus(book_id):
+    book = Book.query.get(book_id)
+    if book and book.amount > 0:
+        book.amount -= 1
         db.session.commit()
     return redirect(url_for('admin_panel'))
 
